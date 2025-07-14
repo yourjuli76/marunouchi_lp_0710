@@ -1,1 +1,179 @@
 
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>丸の内で過ごす休息の時間 | Marunouchi.com</title>
+    <meta name="description" content="都会の喧騒を忘れさせる、安らぎの空間へ。美しい庭園、静かなカフェ、緑豊かな遊歩道。丸の内で、心と体をリフレッシュする穏やかな時間をお過ごしください。">
+    <meta name="keywords" content="丸の内 休息, 皇居, 庭園, 丸の内 カフェ, リラックス, Marunouchi Relax, Garden">
+
+    <meta property="og:title" content="丸の内で過ごす休息の時間 | Marunouchi.com">
+    <meta property="og:description" content="緑と眺望がくれる、都心の安らぎ。">
+    <meta property="og:image" content="https://www.marunouchi.com/assets/img/area/spot4/img_theme02_01.jpg">
+    <meta property="og:url" content="https://www.your-website-url.com/relax.html">
+    <meta property="og:type" content="website">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="丸の内で過ごす休息の時間 | Marunouchi.com">
+    <meta name="twitter:description" content="緑と眺望がくれる、都心の安らぎ。">
+    <meta name="twitter:image" content="https://www.marunouchi.com/assets/img/area/spot4/img_theme02_01.jpg">
+
+    <link rel="icon" href="https://www.marunouchi.com/favicon.ico">
+    <link rel="apple-touch-icon" href="https://www.marunouchi.com/apple-touch-icon.png">
+
+<style>
+    /* (이하 전체 스타일 코드) */
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Noto+Sans+JP:wght@400;700&display=swap');
+    :root{--font-serif:'Playfair Display',serif;--font-sans:'Noto Sans JP',sans-serif;--color-main:#004040;--color-accent:#8c6d46;--color-text:#333333;--color-bg:#FFFFFF;--color-light-bg:#f9f9f9;}
+    *{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{font-family:var(--font-sans);background-color:var(--color-bg);color:var(--color-text);font-size:17px;line-height:1.8;-webkit-font-smoothing:antialiased}
+    .container{max-width:1100px;margin:0 auto;padding:0 20px}
+    a{text-decoration:none;color:var(--color-accent);transition:all .3s ease}
+    .btn{display:inline-block;padding:12px 30px;background-color:var(--color-main);color:#fff;font-weight:700;border-radius:4px;transition:all .4s ease}
+    .btn:hover{background-color:var(--color-accent);transform:translateY(-3px);box-shadow:0 10px 20px rgba(0,0,0,.15);}
+    .main-header{padding:20px 0;background-color:rgba(255,255,255,.95);backdrop-filter:blur(10px);border-bottom:1px solid #eaeaea;position:sticky;top:0;z-index:1000}
+    .header-container{display:flex;justify-content:space-between;align-items:center}
+    .logo{font-family:var(--font-serif);font-size:2.2rem;color:var(--color-main)}
+    .main-nav a{color:var(--color-main);margin:0 20px;font-weight:700}
+    .content-section{padding:120px 0}
+    .section-header{text-align:center;margin-bottom:70px}
+    .section-header h2{font-size:2.8rem;color:var(--color-main);}
+    .section-header p{font-size:1.1rem;max-width:700px;margin:20px auto 0;color:#555}
+    .main-footer{padding:60px 0;background-color:#222;color:#aaa}
+    .copyright{text-align:center;padding-top:40px;margin-top:40px;border-top:1px solid #444}
+    .back-to-top-btn{position:fixed;bottom:30px;right:30px;width:50px;height:50px;background-color:var(--color-main);color:#fff;border-radius:50%;text-align:center;line-height:50px;box-shadow:0 4px 10px rgba(0,0,0,0.2);z-index:500;opacity:0;visibility:hidden;transform:translateY(20px);transition:all .4s ease}
+    .back-to-top-btn.visible{opacity:1;visibility:visible;transform:translateY(0)}
+    .back-to-top-btn svg{width:30px;height:30px;vertical-align:middle}
+    
+    /* === 休息ページ専用スタイル === */
+    .relax-hero {
+        padding: 120px 0;
+        text-align: center;
+        background-color: #f4f8f4; /* 落ち着いた緑がかった背景 */
+    }
+    .relax-hero h1 {
+        font-family: var(--font-serif);
+        font-size: 3.2rem;
+        color: var(--color-main);
+        font-weight: 700;
+        margin-bottom: 15px;
+    }
+    .relax-hero p {
+        font-size: 1.2rem;
+        color: var(--color-text);
+        opacity: 0.8;
+    }
+    .spot-card {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 60px;
+        align-items: center;
+        margin-bottom: 100px;
+    }
+    .spot-card:nth-child(even) .spot-image {
+        grid-column: 2;
+        grid-row: 1;
+    }
+    .spot-card:nth-child(even) .spot-text {
+        grid-column: 1;
+        grid-row: 1;
+    }
+    .spot-image img {
+        width: 100%;
+        height: 400px;
+        object-fit: cover;
+        border-radius: 8px;
+    }
+    .spot-text h3 {
+        font-family: var(--font-serif);
+        font-size: 2.2rem;
+        color: var(--color-main);
+        margin-bottom: 20px;
+    }
+    .spot-text .location-tag {
+        font-weight: 700;
+        color: var(--color-accent);
+        margin-bottom: 20px;
+        display: block;
+    }
+    .spot-text p {
+        line-height: 2;
+    }
+</style>
+</head>
+<body>
+    <header class="main-header">
+        <div class="header-container container">
+            <a href="index.html" class="logo">marunouchi.com</a>
+            <div class="header-right">
+                <nav class="main-nav">
+                    <a href="art.html">Art & Architecture</a>
+                    <a href="gourmet.html">Gourmet</a>
+                    <a href="shopping.html">Shopping</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="relax-hero">
+            <div class="container">
+                <h1>心安らぐ、都心のオアシス</h1>
+                <p>忙しい日常から少し離れて、深呼吸しませんか。</p>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="container">
+                <div class="spot-card">
+                    <div class="spot-image">
+                        <img src="https://visit-chiyoda.tokyo/app/upload/images/higashi_gyoen_c1.jpg" alt="皇居東御苑">
+                    </div>
+                    <div class="spot-text">
+                        <span class="location-tag">GARDEN & HISTORY</span>
+                        <h3>皇居東御苑</h3>
+                        <p>かつて江戸城の中心部であった場所が、今は美しい庭園として一般に公開されています。広大な芝生、歴史的な遺構、そして季節ごとに咲き誇る花々。都会の中心にいることを忘れさせるほどの、静寂と自然に満ちた空間です。</p>
+                        <a href="https://www.kunaicho.go.jp/event/higashigyoen/higashigyoen.html" class="btn" target="_blank" rel="noopener">詳細を見る</a>
+                    </div>
+                </div>
+
+                <div class="spot-card">
+                    <div class="spot-image">
+                        <img src="https://marunouchi.g.kuroco-img.app/v=1705296909/files/user/media/pickup/1911/lp_img03.jpg" alt="丸の内ブリックスクエア">
+                    </div>
+                    <div class="spot-text">
+                        <span class="location-tag">SQUARE & CAFE</span>
+                        <h3>丸の内ブリックスクエア</h3>
+                        <p>三菱一号館美術館を囲むように広がる、緑豊かな中庭。バラが咲く季節は特に美しく、多くの人々がベンチに座って読書をしたり、カフェのテラスで談笑したりしています。ショッピングの合間に立ち寄って、ほっと一息つくのに最適な場所です。</p>
+                    </div>
+                </div>
+
+                <div class="spot-card">
+                    <div class="spot-image">
+                        <img src="https://marunouchi.jp-kitte.jp/cmsdata/static/fig_facility-garden02.jpg" alt="KITTEガーデン">
+                    </div>
+                    <div class="spot-text">
+                        <span class="location-tag">ROOFTOP & VIEW</span>
+                        <h3>KITTEガーデン</h3>
+                        <p>JPタワーの屋上にある、緑豊かな展望庭園。ウッドデッキが敷かれた開放的な空間からは、目の前に広がる東京駅のパノラマビューを心ゆくまで楽しめます。都会の真ん中で風を感じながら過ごす時間は、何よりの贅沢です。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+      <div class="container">
+        </div>
+    </footer>
+    <a href="#" id="back-to-top" class="back-to-top-btn" aria-label="Back to top">
+      <svg viewBox="0 0 24 24"><path fill="currentColor" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6l-6 6z"></path></svg>
+    </a>
+    <script>
+      // (スクリプト内容は省略)
+    </script>
+</body>
+</html>
