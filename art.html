@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>丸の内アート＆建築ガイド | Marunouchi.com</title>
+    <meta name="description" content="丸の内のアート＆建築を120%楽しむためのガイド。必ず訪れたい核心スポット紹介から、専門家が推薦する時間別・テーマ別のおすすめ散策コースまで、あなたの旅を豊かにする情報が満載です。">
+    <meta name="keywords" content="丸の内, アート, 建築, 美術館, コース, 散策, ガイド, Marunouchi, Art, Architecture, Museum, Guide">
+    
+    <meta property="og:title" content="丸の内アート＆建築ガイド | Marunouchi.com">
+    <meta property="og:description" content="専門家が推薦するコースで巡る、丸の内のアートと建築。">
+    <meta property="og:image" content="https://tokyo-marunouchi.jp/dmo_wp_YfehP9/wp-content/uploads/2018/01/916faeef1ab8fe3fb20bb42ef55051f4.jpg">
+    <meta property="og:url" content="https://www.your-website-url.com/art.html">
+    <meta property="og:type" content="website">
+
+    <link rel="icon" href="https://www.marunouchi.com/favicon.ico">
+    <link rel="apple-touch-icon" href="https://www.marunouchi.com/apple-touch-icon.png">
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Noto+Sans+JP:wght@400;500;700&display=swap');
+    
+    :root {
+        --font-serif: 'Playfair Display', serif;
+        --font-sans: 'Noto Sans JP', sans-serif;
+        --color-main: #004040;
+        --color-accent: #8c6d46;
+        --color-text: #333333;
+        --color-bg: #FFFFFF;
+        --color-light-bg: #f9f9f9;
+        --header-height: 80px;
+    }
+
+    /* --- 기본 스타일 --- */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+        font-family: var(--font-sans);
+        background-color: var(--color-bg);
+        color: var(--color-text);
+        font-size: 17px;
+        line-height: 1.8;
+        -webkit-font-smoothing: antialiased;
+        font-weight: 400;
+    }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+    h1, h2, h3, h4 { font-family: var(--font-serif); color: var(--color-main); font-weight: 700; }
+    a { text-decoration: none; color: var(--color-accent); }
+
+    /* --- 헤더 --- */
+    .main-header {
+        height: var(--header-height);
+        padding: 0;
+        display: flex;
+        align-items: center;
+        background-color: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid transparent;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        transition: all 0.3s ease;
+    }
+    .main-header.scrolled {
+        background-color: rgba(255, 255, 255, 0.9);
+        box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+        border-bottom-color: #eaeaea;
+    }
+    .header-container { width: 100%; display: flex; justify-content: space-between; align-items: center; }
+    .logo { font-size: 2.2rem; text-decoration: none; color: var(--color-main); }
+    .main-nav a, .dropdown .dropbtn { color: var(--color-main); margin: 0 18px; font-weight: 500; text-decoration: none; position: relative; padding: 5px 0; }
+    .dropdown { position: relative; display: inline-block; }
+    .dropdown .dropbtn { border: none; background: transparent; cursor: pointer; font-size: 1em; }
+    .dropdown-content { display: none; position: absolute; background-color: #fff; min-width: 220px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); z-index: 1; border-radius: 8px; border: 1px solid #f0f0f0; margin-top: 15px;}
+    .dropdown:hover .dropdown-content { display: block; }
+    .dropdown-content a { color: var(--color-text); padding: 14px 20px; display: block; font-weight: 500; }
+    .dropdown-content a:hover { background-color: var(--color-light-bg); color: var(--color-accent); }
+
+    /* --- 서브페이지 히어로 --- */
+    .sub-hero {
+        height: 50vh; display: flex; align-items: center; justify-content: center;
+        text-align: center; color: #fff; background-size: cover; background-position: center 30%;
+        position: relative;
+    }
+    .sub-hero::before { content: ''; position: absolute; inset: 0; background: rgba(0, 64, 64, 0.55); }
+    .sub-hero-content { position: relative; z-index: 1; }
+    .sub-hero h1 { font-size: 3.5rem; color: #fff; }
+    .sub-hero p { font-size: 1.2rem; margin-top: 10px; opacity: 0.9; }
+
+    /* --- 공통 섹션 스타일 --- */
+    .content-section { padding: 100px 0; }
+    .section-header { text-align: center; margin-bottom: 60px; }
+    .section-header h2 { font-size: 2.8rem; }
+    .section-header p { max-width: 700px; margin: 15px auto 0; line-height: 1.8; color: #555; }
+
+    /* --- 1. 핵심 스팟 카드 --- */
+    .key-spots-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+        gap: 30px;
+    }
+    .spot-card {
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        overflow: hidden;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .spot-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+    }
+    .spot-card img { width: 100%; height: 240px; object-fit: cover; }
+    .spot-card-content { padding: 25px 30px; }
+    .spot-card-content h3 { font-size: 1.6rem; margin-bottom: 10px; }
+    .spot-card-content p { font-size: 0.95rem; margin-bottom: 20px; color: #555; }
+    .spot-card-links { display: flex; gap: 15px; }
+    .btn { display: inline-block; padding: 12px 30px; background-color: var(--color-main); color: #fff; font-weight: 700; border-radius: 50px; text-align: center; transition: all .4s ease; border: none; }
+    .btn:hover { background-color: var(--color-accent); transform: translateY(-3px); }
+    .btn-small { padding: 8px 20px; font-size: 0.9rem; }
+    .btn-outline { background: transparent; border: 1px solid var(--color-main); color: var(--color-main); }
+    .btn-outline:hover { background: var(--color-main); color: #fff; }
+
+    /* --- 2. 추천 코스 탭 --- */
+    .course-tabs-container { background-color: var(--color-light-bg); padding: 100px 0; }
+    .course-tabs { display: flex; justify-content: center; gap: 15px; margin-bottom: 50px; flex-wrap: wrap; }
+    .tab-button {
+        padding: 12px 30px; border: 1px solid #ddd; border-radius: 50px;
+        font-weight: 700; font-size: 1rem; color: #888; background: #fff;
+        cursor: pointer; transition: all .3s ease;
+    }
+    .tab-button:hover, .tab-button.active {
+        border-color: var(--color-accent); color: #fff; background-color: var(--color-accent);
+        transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; animation: fadeIn .5s ease; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+    .itinerary-step { display: grid; grid-template-columns: 100px 1fr; gap: 30px; max-width: 900px; margin: 0 auto 50px; position: relative; }
+    .itinerary-step:not(:last-child)::before {
+        content: ''; position: absolute; top: 20px; left: 49px; height: 100%; border-left: 2px dashed #ccc;
+    }
+    .step-time { text-align: right; }
+    .step-time span { font-weight: 700; background: var(--color-main); color: #fff; padding: 8px 15px; border-radius: 50px; display: inline-block; }
+    .step-content { background: #fff; border-radius: 8px; padding: 30px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); border: 1px solid #eee; }
+    .step-content img { width: 100%; height: 250px; object-fit: cover; border-radius: 4px; margin-bottom: 20px; }
+    .step-content h3 { font-size: 1.8rem; margin-bottom: 10px; }
+    .step-content p { color: #555; }
+    .step-content .pro-tip { background-color: #f0f8ff; border-left: 4px solid #87ceeb; padding: 15px; margin-top: 20px; font-size: 0.95rem; border-radius: 0 4px 4px 0; }
+    .pro-tip strong { color: var(--color-main); }
+
+    /* =================================
+       ★★★ 아트 페이지 - 심층 콘텐츠 추가 스타일 ★★★
+       ================================= */
+    
+    /* --- 전문가 인터뷰 섹션 --- */
+    .interview-section { padding: 100px 0; }
+    .interview-grid {
+        display: grid;
+        grid-template-columns: 300px 1fr;
+        gap: 50px;
+        align-items: flex-start;
+        max-width: 1000px;
+        margin: 0 auto;
+    }
+    .interviewer-profile img {
+        width: 100%;
+        border-radius: 50%;
+        border: 5px solid #fff;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+    .interviewer-profile h4 { font-size: 1.5rem; margin-top: 20px; }
+    .interviewer-profile p { color: #777; font-size: 0.9rem; }
+    .interview-qa .question { font-weight: 700; font-size: 1.2rem; color: var(--color-main); margin-bottom: 10px; }
+    .interview-qa blockquote {
+        font-size: 1.05rem;
+        line-height: 1.9;
+        margin: 0 0 30px 0;
+        padding-left: 20px;
+        border-left: 3px solid var(--color-accent);
+        font-style: italic;
+    }
+
+    /* --- 실용적인 여행 팁 섹션 --- */
+    /* =================================
+   ★★★ Smart Art Tour Tips セクション CSS ★★★
+   ================================= */
+.tips-section {
+    padding: 100px 0;
+    background-color: var(--color-light-bg); /* 背景色を変更 */
+}
+.tips-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* レスポンシブグリッド */
+    gap: 40px;
+    margin-top: 50px;
+}
+.tip-column h3 {
+    font-size: 1.8rem;
+    padding-bottom: 15px;
+    border-bottom: 2px solid var(--color-main);
+    margin-bottom: 30px;
+    display: inline-block;
+}
+.tip-card {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    margin-bottom: 30px;
+    overflow: hidden;
+}
+.tip-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+.tip-info {
+    padding: 20px 25px;
+}
+.tip-info h4 {
+    font-family: var(--font-sans);
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: var(--color-text);
+}
+.tip-info p {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: #666;
+}
+
+
+
+/* =================================
+   ★★★ 신규: "벤토 그리드" 섹션 CSS ★★★
+   ================================= */
+   .bento-section {
+    padding: 100px 0;
+    background-color: var(--color-light-bg);
+}
+
+.bento-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr); /* 12단 그리드 시스템 */
+    grid-auto-rows: minmax(150px, auto); /* 행의 최소 높이 지정 */
+    gap: 25px;
+}
+
+.bento-item {
+    background-color: #fff;
+    border-radius: 16px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.bento-item:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+    z-index: 10;
+}
+.bento-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.bento-item.accent-bg {
+    background-color: var(--color-main);
+    color: #fff;
+}
+
+/* 그리드 아이템 배치 */
+.item-1 { grid-column: 1 / span 7; grid-row: 1 / span 2; }
+.item-2 { grid-column: 8 / span 5; grid-row: 1 / span 1; }
+.item-3 { grid-column: 8 / span 5; grid-row: 2 / span 1; }
+.item-4 { grid-column: 1 / span 7; grid-row: 3 / span 2; }
+.item-5 { grid-column: 8 / span 5; grid-row: 3 / span 1; }
+/* ... 필요에 따라 더 많은 아이템과 배치 규칙 추가 ... */
+
+/* 카드 콘텐츠 스타일 */
+.bento-content {
+    position: relative; /* 이미지 위에 텍스트를 올리기 위해 */
+    z-index: 2;
+    padding: 30px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; /* 콘텐츠를 아래쪽에 배치 */
+    color: #fff;
+    background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 60%);
+}
+.bento-content.large h3 { font-size: 2.2rem; }
+.bento-content.small { justify-content: flex-start; background: none; padding: 20px; }
+.bento-content.small h3 { color: var(--color-text); font-size: 1.2rem; }
+
+.bento-content .badge {
+    display: inline-block;
+    padding: 5px 12px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    border-radius: 50px;
+    margin-bottom: 12px;
+    color: #fff;
+    background-color: rgba(0, 64, 64, 0.7);
+    backdrop-filter: blur(5px);
+}
+.bento-content .badge.event { background-color: rgba(217, 83, 79, 0.8); }
+.bento-content .badge.art { background-color: rgba(91, 192, 222, 0.8); }
+
+.bento-content h3 {
+    font-family: var(--font-sans);
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    line-height: 1.3;
+    text-shadow: 0 1px 5px rgba(0,0,0,0.5);
+}
+.bento-content p {
+    font-size: 1rem;
+    line-height: 1.6;
+    opacity: 0.9;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+}
+
+/* 텍스트만 있는 카드 스타일 */
+.bento-content.text-only {
+    background: none;
+    justify-content: center;
+}
+.item-2.accent-bg .bento-content.text-only {
+    color: #fff;
+}
+.bento-content.text-only h4 {
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+    color: inherit;
+}
+.bento-content.text-only p {
+    font-family: var(--font-serif);
+    font-style: italic;
+    opacity: 0.8;
+    font-size: 1.1rem;
+}
+.bento-content.small-text {
+    justify-content: space-between;
+}
+.bento-content.small-text a {
+    color: var(--color-accent);
+    font-weight: 700;
+    text-decoration: none;
+}
+
+/* 반응형 */
+@media (max-width: 992px) {
+    .bento-grid {
+        grid-template-columns: repeat(6, 1fr);
+        grid-auto-rows: minmax(120px, auto);
+    }
+    .item-1 { grid-column: 1 / span 6; grid-row: 1 / span 2; }
+    .item-2 { grid-column: 1 / span 3; grid-row: 3 / span 1; }
+    .item-3 { grid-column: 4 / span 3; grid-row: 3 / span 1; }
+    .item-4 { grid-column: 1 / span 6; grid-row: 4 / span 2; }
+    .item-5 { grid-column: 1 / span 6; grid-row: 6 / span 1; }
+}
+    /* --- 푸터 --- */
+    .main-footer { background-color: #181818; color: #a0a0a0; padding: 60px 0 40px; font-size: 16px; }
+    .footer-main { display: grid; grid-template-columns: 2.5fr 1fr 1.5fr 1fr; gap: 40px; }
+    /* ... (이전 답변의 푸터 스타일) ... */
+
+</style>
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="header-container container">
+            <a href="index.html" class="logo">marunouchi.com</a>
+            <div class="header-right">
+                <nav class="main-nav">
+                    <div class="dropdown">
+                        <button class="dropbtn">テーマ別に見る</button>
+                        <div class="dropdown-content">
+                            <a href="art.html">Art & Architecture</a>
+                            <a href="gourmet.html">Gourmet</a>
+                            <a href="shopping.html">Shopping</a>
+                            <a href="relax.html">Relaxation</a>
+                        </div>
+                    </div>
+                    <a href="index.html#events">Events</a>
+                    <a href="index.html#map">Map</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="sub-hero" style="background-image: url('https://tokyo-marunouchi.jp/dmo_wp_YfehP9/wp-content/uploads/2018/01/916faeef1ab8fe3fb20bb42ef55051f4.jpg');">
+            <div class="sub-hero-content">
+                <h1>Art & Architecture Guide</h1>
+                <p>過去と未来が共存する、丸の内の芸術的風景を巡る旅</p>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>At a Glance: Key Spots</h2>
+                    <p>初めて丸の内を訪れるなら、まずはここから。街の象徴ともいえるアートと建築のランドマークです。</p>
+                </div>
+                <div class="key-spots-grid">
+                    <div class="spot-card">
+                        <img src="https://www.marunouchi.com/assets/img/area/spot4/img_theme02_01.jpg" alt="東京駅 丸の内駅舎">
+                        <div class="spot-card-content">
+                            <h3>東京駅 丸の内駅舎</h3>
+                            <p>100年以上の歴史を誇る、赤レンガが美しい日本の玄関口。</p>
+                            <div class="spot-card-links">
+                                <a href="https://www.tokyoinfo.com/" class="btn btn-small" target="_blank" rel="noopener">公式サイト</a>
+                                <a href="http://googleusercontent.com/maps.google.com/4" class="btn btn-small btn-outline" target="_blank" rel="noopener">地図で見る</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="spot-card">
+                        <img src="https://mimt.jp/wp-content/themes/mimt/assets/img/common/og_image.jpg" alt="三菱一号館美術館">
+                        <div class="spot-card-content">
+                            <h3>三菱一号館美術館</h3>
+                            <p>19世紀の近代美術を、美しい復元建築の中で楽しむ空間。</p>
+                            <div class="spot-card-links">
+                                <a href="https://mimt.jp/" class="btn btn-small" target="_blank" rel="noopener">公式サイト</a>
+                                <a href="http://googleusercontent.com/maps.google.com/5" class="btn btn-small btn-outline" target="_blank" rel="noopener">地図で見る</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="spot-card">
+                        <img src="https://www.t-i-forum.co.jp/en/discover/facilities/img/photo_g_hall_01.jpg" alt="東京国際フォーラム">
+                        <div class="spot-card-content">
+                            <h3>東京国際フォーラム</h3>
+                            <p>船をモチーフにしたガラス棟が圧巻の、現代建築の傑作。</p>
+                            <div class="spot-card-links">
+                                <a href="https://www.t-i-forum.co.jp/" class="btn btn-small" target="_blank" rel="noopener">公式サイト</a>
+                                <a href="http://googleusercontent.com/maps.google.com/6" class="btn btn-small btn-outline" target="_blank" rel="noopener">地図で見る</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <div class="course-tabs-container">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Recommended Courses</h2>
+                    <p>あなたの時間と興味に合わせて、最適なアート散策コースを選んでみましょう。</p>
+                </div>
+
+                <div class="course-tabs">
+                    <button class="tab-button active" data-tab="course-half-day">半日満喫コース</button>
+                    <button class="tab-button" data-tab="course-modern">現代建築コース</button>
+                </div>
+
+                <div id="course-half-day" class="tab-content active">
+                    <div class="itinerary-step">
+                        <div class="step-time"><span>1:00 PM</span></div>
+                        <div class="step-content">
+                            <img src="https://www.marunouchi.com/assets/img/area/spot4/img_theme02_01.jpg" alt="東京駅">
+                            <h3>START: 東京駅</h3>
+                            <p>旅の始まりは日本の玄関口から。まずは壮麗な赤レンガ建築を写真に収めましょう。</p>
+                        </div>
+                    </div>
+                    <div class="itinerary-step">
+                        <div class="step-time"><span>1:30 PM</span></div>
+                        <div class="step-content">
+                            <img src="https://mimt.jp/wp-content/themes/mimt/assets/img/sp/cafe1894/bg_top.jpg" alt="三菱一号館美術館">
+                            <h3>三菱一号館美術館 & Café 1894</h3>
+                            <p>19世紀の西洋美術を鑑賞後、クラシックな雰囲気の「Café 1894」で優雅なティータイムを。</p>
+                        </div>
+                    </div>
+                     <div class="itinerary-step">
+                        <div class="step-time"><span>3:00 PM</span></div>
+                        <div class="step-content">
+                            <img src="https://live.staticflickr.com/65535/51291880590_05089e9f3b_b.jpg" alt="丸の内仲通りのパブリックアート">
+                            <h3>丸の内仲通りでパブリックアート巡り</h3>
+                            <p>草間彌生など、世界的なアーティストの彫刻を探しながら、お洒落なブティックが並ぶ並木道を散策します。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="course-modern" class="tab-content">
+                     <div class="itinerary-step">
+                        <div class="step-time"><span>1:00 PM</span></div>
+                        <div class="step-content">
+                            <img src="https://www.t-i-forum.co.jp/en/discover/facilities/img/photo_g_hall_01.jpg" alt="東京国際フォーラム">
+                            <h3>START: 東京国際フォーラム</h3>
+                            <p>ラファエル・ヴィニオリ設計のガラス棟へ。船底のような巨大な吹き抜け空間の構造美に圧倒されます。</p>
+                        </div>
+                    </div>
+                     <div class="itinerary-step">
+                        <div class="step-time"><span>2:30 PM</span></div>
+                        <div class="step-content">
+                            <img src="https://marunouchi.g.kuroco-img.app/v=1705296909/files/user/media/pickup/1911/lp_img02.jpg" alt="丸ビル・新丸ビル">
+                            <h3>丸ビル・新丸ビル</h3>
+                            <p>低層部に旧丸ビルの外観を再現した丸ビルと、モダンな新丸ビル。二つのビルの対比を楽しみながら、商業施設フロアを散策します。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <section class="interview-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Curator's Eye</h2>
+                    <p>三菱一号館美術館の学芸員、佐藤由紀さんが語る丸の内アートの魅力</p>
+                </div>
+                <div class="interview-grid">
+                    <div class="interviewer-profile">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=400&auto=format&fit=crop" alt="佐藤 由紀氏">
+                        <h4>佐藤 由紀 (Yuki Sato)</h4>
+                        <p>三菱一号館美術館<br>シニア・キュレーター</p>
+                    </div>
+                    <div class="interview-qa">
+                        <p class="question">Q. 他のエリアと違う、丸の内アートシーンのユニークな点は何ですか？</p>
+                        <blockquote>
+                            「丸の内は『歴史と現代の対話』が街全体で繰り広げられている点に尽きます。100年前の建築と、すぐ隣に立つ超高層ビルが互いを引き立て合う。この文脈の中でアートを鑑賞すると、作品が持つ時間的な深みをより一層感じられるはずです。」
+                        </blockquote>
+                        <p class="question">Q. 初めて訪れる方へ、アドバイスはありますか？</p>
+                        <blockquote>
+                            「地面だけを見て歩くのはもったいないですね。ぜひ『見上げる』ことを意識してみてください。ビルが描く空の形、壁面のテクスチャー、ガラスに映る別の建物の姿。そのすべてがアートです。そして、疲れたら美しい中庭のあるカフェで一休み。その緩急が、丸の内でのアート体験を特別なものにしてくれます。」
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section class="bento-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Marunouchi Now: July 2025</h2>
+                    <p>今月、アートファンと建築好きが注目すべき最新の展示、イベント、見どころを厳選しました。</p>
+                </div>
+        
+                <div class="bento-grid">
+                    <div class="bento-item item-1">
+                        <img src="https://mimt.jp/wp-content/uploads/2025/02/%E7%AC%AC%E4%B8%80%E5%BC%BE%E3%83%81%E3%83%A9%E3%82%B7%E8%A1%A8%E9%9D%A2.jpg" alt="Marunouchi Cityscape">
+                        <div class="bento-content large">
+                            <span class="badge event">SPECIAL EXHIBITION</span>
+                            <h3>オランジュリー美術館 オルセー美術館 コレクションより
+                                ルノワール×セザンヌ―モダンを拓いた2人の巨匠</h3>
+                            <p>三菱一号館美術館 (~9/7)</p>
+                        </div>
+                    </div>
+        
+                    <div class="bento-item item-2 accent-bg">
+                        <div class="bento-content text-only">
+                            <h4>Curator's Pick</h4>
+                            <p>"ルノワールとセザンヌの交遊と合わせて、
+                                自在で多様な表現が生み出されるモダン・アートの誕生前夜に立つ２人の巨匠の、
+                                卓越した芸術表現を存分にお楽しみいただけます。</p>
+                        </div>
+                    </div>
+        
+                    <div class="bento-item item-3">
+                        <img src="https://live.staticflickr.com/65535/51291880590_05089e9f3b_b.jpg" alt="Public Art">
+                         <div class="bento-content small">
+                            <span class="badge art">PUBLIC ART</span>
+                            <h3>草間彌生「われは南瓜」</h3>
+                        </div>
+                    </div>
+        
+                    <div class="bento-item item-4">
+                        <img src="https://images.unsplash.com/photo-1511382434138-2e6b52a48858?q=80&w=600&auto=format&fit=crop" alt="Architecture Photography">
+                         <div class="bento-content">
+                            <span class="badge event">PHOTO EXHIBITION</span>
+                            <h3>「東京の表情」建築写真展</h3>
+                            <p>KITTE丸の内1階で開催中。気鋭の写真家たちが捉えた建築のディテール。</p>
+                        </div>
+                    </div>
+        
+                    <div class="bento-item item-5">
+                         <div class="bento-content text-only small-text">
+                            <h4>Limited Tour</h4>
+                            <p>建築家と巡る「丸ビル」ナイトツアー (7月限定・要予約)</p>
+                            <a href="#">詳細を見る →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="tips-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Smart Art Tour Tips</h2>
+            <p>美術館巡りを超え、都市全体をギャラリーとして楽しむための専門家のヒント</p>
+        </div>
+
+        <div class="tips-grid">
+            <div class="tip-column">
+                <h3>① Photo Spot Tips</h3>
+                <div class="tip-card">
+                    <img src="https://marunouchi.jp-kitte.jp/cmsdata/static/fig_facility-garden02.jpg" alt="Daytime Photo Spot">
+                    <div class="tip-info">
+                        <h4>【昼】東京駅の赤レンガと青空</h4>
+                        <p>KITTE6階の屋上庭園は、遮るものなく駅舎を正面から捉えられる最高の場所です。パノラマ機能で駅全体を撮影してみましょう。</p>
+                    </div>
+                </div>
+                <div class="tip-card">
+                    <img src="https://live.staticflickr.com/65535/49045719396_a6f4435b89_b.jpg" alt="Nighttime Photo Spot">
+                    <div class="tip-info">
+                        <h4>【夜】光の軌跡、行幸通りの夜景</h4>
+                        <p>行幸通りの中央から三脚を立てて長時間露光で撮影すれば、車のライトとライトアップされた駅舎が織りなす幻想的な写真が撮れます。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tip-column">
+                <h3>② Frugal Tour Tips</h3>
+                <div class="tip-card">
+                    <img src="https://live.staticflickr.com/65535/51291880590_05089e9f3b_b.jpg" alt="Public Art">
+                    <div class="tip-info">
+                        <h4>無料で楽しむストリート美術館</h4>
+                        <p>丸の内仲通りに設置された世界的な彫刻家たちの作品は、それ自体が素晴らしい無料の美術館です。入館料なしで最高のアートに触れてみてください。</p>
+                    </div>
+                </div>
+                <div class="tip-card">
+                    <img src="https://www.tokyo-event.co.jp/wp-content/uploads/2018/11/marunouchi-shuttle.jpg" alt="Marunouchi Shuttle Bus">
+                    <div class="tip-info">
+                        <h4>無料巡回バスの活用</h4>
+                        <p>「丸の内シャトル」は主要なアートスポットを無料で結びます。歩き疲れた時や、少し離れた美術館へ移動する際に利用すれば、時間と体力を節約できます。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tip-column">
+                <h3>③ Comfort & More Tips</h3>
+                <div class="tip-card">
+                    <img src="https://www.gotokyo.org/jp/spot/38/images/4096_1_1600x1200.jpg" alt="Tokyo International Forum">
+                    <div class="tip-info">
+                        <h4>雨の日の屋内ルート</h4>
+                        <p>雨天や猛暑の日には、東京駅の地下通路を利用して新丸ビル、丸ビル、東京国際フォーラムまで屋内で移動できます。天候を気にせず快適にアート巡りを。</p>
+                    </div>
+                </div>
+                <div class="tip-card">
+                    <img src="https://mimt.jp/cafe1894/images/top/main_2.jpg" alt="Café 1894">
+                    <div class="tip-info">
+                        <h4>アートの余韻を楽しむ</h4>
+                        <p>美術館鑑賞の後には、作品の感想を語り合える静かな空間が必要です。美術館に併設されたカフェは、その余韻に浸るのに最高の場所です。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+        <section class="content-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Art & More</h2>
+                    <p>アート鑑賞の合間に、あるいは余韻を楽しむために。一緒に体験したい丸の内の魅力。</p>
+                </div>
+                <div class="recommend-grid">
+                    <a href="gourmet.html" class="recommend-card">
+                        <img src="https://mimt.jp/cafe1894/images/top/main_2.jpg" alt="Café 1894">
+                        <div class="recommend-content">
+                            <span class="tag">GOURMET</span>
+                            <h4>優雅なカフェで、アートの余韻を</h4>
+                            <p>三菱一号館美術館内の「Café 1894」で、クラシックな空間に浸る。</p>
+                        </div>
+                    </a>
+                    <a href="shopping.html" class="recommend-card">
+                        <img src="https://www.marunouchi.com/tenants/3001/images/3001_1_1.jpg" alt="Itoya">
+                        <div class="recommend-content">
+                            <span class="tag">SHOPPING</span>
+                            <h4>創造力を刺激する文房具</h4>
+                            <p>KITTE内の「アンジェ ビュロー」で、美しいデザインの文房具を探す。</p>
+                        </div>
+                    </a>
+                    <a href="relax.html" class="recommend-card">
+                        <img src="https://visit-chiyoda.tokyo/app/upload/images/higashi_gyoen_c1.jpg" alt="皇居東御苑">
+                        <div class="recommend-content">
+                            <span class="tag">RELAX</span>
+                            <h4>都心のオアシスで心を静める</h4>
+                            <p>アート鑑賞で高ぶった感性を、皇居東御苑の静かな緑の中でクールダウン。</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">...</footer>
+    <a href="#" id="back-to-top" class="back-to-top-btn" aria-label="Back to top">...</a>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    // 탭 기능 활성화를 위한 JavaScript
+    const tabButtons = document.querySelectorAll('.tab-button');
+    const tabContents = document.querySelectorAll('.tab-content');
+
+    if(tabButtons.length > 0) {
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                tabContents.forEach(content => content.classList.remove('active'));
+
+                button.classList.add('active');
+                const targetContentId = button.getAttribute('data-tab');
+                document.getElementById(targetContentId).classList.add('active');
+            });
+        });
+    }
+
+    // 스크롤에 따른 헤더 스타일 변경
+    const header = document.querySelector('.main-header');
+    if (header) {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+    }
+
+    // 기타 필요한 JS (모바일 메뉴, 스크롤 스파이, 맨 위로 가기 등)
+    // ...
+});
+</script>
+</body>
+</html>
