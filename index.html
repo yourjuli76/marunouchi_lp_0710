@@ -36,18 +36,209 @@
     }
     *{margin:0;padding:0;box-sizing:border-box}
     html{scroll-behavior:smooth}
-    body{font-family:var(--font-sans);background-color:var(--color-bg);color:var(--color-text);line-height:1.8;-webkit-font-smoothing:antialiased}
+    body{font-family:var(--font-sans);background-color:var(--color-bg);color:var(--color-text);font-size: 17px;line-height:1.7;-webkit-font-smoothing:antialiased}
     .container{max-width:1200px;margin:0 auto;padding:0 20px}
     a{text-decoration:none;color:var(--color-accent);transition:all .3s ease}
+    .main-header{padding:20px 0;background-color:rgba(255,255,255,.95);backdrop-filter:blur(10px);border-bottom:1px solid #eaeaea;position:sticky;top:0;z-index:1000}
+    .header-container{display:flex;justify-content:space-between;align-items:center}
+    .logo{font-family:var(--font-serif);font-size:2.2rem;color:var(--color-main)}
+    .header-right{display:flex;align-items:center}
+    .main-nav a{color:var(--color-main);margin:0 20px;font-weight:700; padding: 10px 0;}
+    .lang-switcher{font-size:.9rem;margin-left:20px;padding-left:20px;border-left:1px solid #ddd}
+    .lang-switcher a{color:#999;font-weight:700;margin:0 4px}
+    .lang-switcher a.active{color:var(--color-main)}
+
+    /* =================================
+   ★★★ 1. 헤더 드롭다운 메뉴 개선 ★★★
+   ================================= */
+
+/* 드롭다운 컨테이너 */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* 드롭다운 버튼 */
+.dropdown .dropbtn {
+    font-family: var(--font-sans);
+    font-size: 1em;
+    font-weight: 700;
+    color: var(--color-main);
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    padding: 10px 5px; /* 패딩 조정 */
+    margin: 0 15px;
+    display: flex; /* 아이콘과 텍스트 정렬을 위해 */
+    align-items: center;
+    transition: color 0.3s ease;
+}
+
+
+
+/* 호버 시 버튼 색상 및 화살표 회전 */
+.dropdown:hover .dropbtn {
+    color: var(--color-accent);
+}
+.dropdown:hover .dropbtn::after {
+    transform: rotate(180deg);
+}
+
+/* 드롭다운 콘텐츠 (메뉴 목록) */
+.dropdown-content {
+    /* 기존: display: none; */
+    /* 변경: 애니메이션을 위해 opacity와 visibility 사용 */
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    background-color: #ffffff;
+    min-width: 220px;
+    box-shadow: 0px 10px 25px 0px rgba(0,0,0,0.1); /* 그림자 강화 */
+    z-index: 1;
+    border-radius: 8px; /* 더 둥글게 */
+    overflow: hidden;
+    border: 1px solid #f0f0f0;
+    top: 120%; /* 시작 위치를 약간 아래로 */
+    left: 50%;
+    transform: translateX(-50%);
+    transition: opacity 0.3s ease, top 0.3s ease, visibility 0.3s;
+}
+
+/* 드롭다운 콘텐츠 내부 링크 */
+.dropdown-content a {
+    color: var(--color-text);
+    padding: 14px 20px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+    font-weight: 500; /* 폰트 두께 조정 */
+    margin: 0;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* 링크 호버 효과 */
+.dropdown-content a:hover {
+    background-color: var(--color-light-bg);
+    color: var(--color-accent);
+}
+
+/* 드롭다운 컨테이너에 호버 시 메뉴 나타남 */
+.dropdown:hover .dropdown-content {
+    opacity: 1;
+    visibility: visible;
+    top: 100%; /* 최종 위치 */
+}
+
+
+/* =================================
+   ★★★ 2. 사이드바 내비게이션 개선 ★★★
+   ================================= */
+.side-nav {
+    position: fixed;
+    top: 50%;
+    left: 30px;
+    transform: translateY(-50%);
+    z-index: 1001;
+}
+
+.side-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.side-nav li {
+    margin-bottom: 2px; /* 간격 미세 조정 */
+}
+
+.side-nav a {
+    display: block; /* li 전체를 링크 영역으로 */
+    padding: 10px 15px 10px 25px; /* 왼쪽 여백을 늘려 인디케이터 공간 확보 */
+    color: var(--color-main);
+    font-weight: 500;
+    font-size: 0.9rem;
+    position: relative;
+    opacity: 0.6;
+    transition: all 0.3s ease;
+    text-decoration: none; /* 밑줄 제거 */
+}
+
+/* 호버 시, 기존 translateX 대신 투명도만 변경 */
+.side-nav a:hover {
+    opacity: 1;
+    background-color: rgba(0, 64, 64, 0.05);
+    transform: translateX(0); /* 기존 이동 효과 제거 */
+}
+
+
+/* 호버 시 색상 바 나타남 */
+.side-nav a:hover::before {
+    height: 60%;
+}
+
+/* 현재 활성화된 메뉴 (JS로 .active 클래스 추가 시) */
+.side-nav a.active {
+    opacity: 1;
+    font-weight: 700; /* 활성 메뉴 폰트 강조 */
+    color: var(--color-accent);
+}
+
+
+
+/* 구분선 스타일 */
+.nav-divider {
+    height: 1px;
+    background-color: #ddd;
+    margin: 15px 5px; /* 여백 조정 */
+    padding: 0;
+    list-style: none;
+}
+
+/* 카테고리 텍스트 스타일 */
+.nav-category {
+    padding: 15px 15px 5px;
+    font-size: 0.8em;
+    color: #999;
+    font-weight: 700;
+    text-transform: uppercase;
+    list-style: none;
+}
+    
+    /* 사이드바, 모바일 메뉴 구분선/카테고리 스타일 */
+    .nav-divider { height: 1px; background-color: #ddd; margin: 10px 0; padding: 0; list-style: none; }
+    .nav-category { padding: 10px 0 5px; font-size: 0.9em; color: #999; font-weight: 700; text-transform: uppercase; list-style: none; }
+    
+    /* 사이드바 스타일 */
+    .side-nav{position:fixed;top:50%;left:30px;transform:translateY(-50%);z-index:1001}
+    .side-nav ul{list-style:none;padding:0; margin:0;}
+    .side-nav li{margin-bottom:10px}
+    .side-nav a{display:flex;align-items:center;color:var(--color-main);font-weight:700;font-size:.9rem;opacity:.5;transition:all .3s ease}
+    .side-nav a:hover, .side-nav a.active {opacity:1;transform:translateX(5px)}
+    .side-nav a.active { color: var(--color-accent); }
+
+    /* 모바일 햄버거 메뉴 관련 CSS */
+    .hamburger-btn { display: none; background: transparent; border: none; cursor: pointer; }
+    .mobile-nav-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.6); z-index: 2000; visibility: hidden; opacity: 0; transition: opacity .4s, visibility .4s; }
+    .mobile-nav { position: fixed; top: 0; left: -300px; width: 300px; height: 100%; background-color: #fff; box-shadow: 5px 0 15px rgba(0,0,0,0.1); transition: transform .4s ease-in-out; padding: 20px; display: flex; flex-direction: column; }
+    body.nav-open { overflow: hidden; }
+    body.nav-open .mobile-nav-overlay { visibility: visible; opacity: 1; }
+    body.nav-open .mobile-nav { transform: translateX(300px); }
+    .mobile-nav-header { display: flex; justify-content: space-between; align-items: center; padding-bottom: 20px; border-bottom: 1px solid #eee; }
+    .close-btn { background: none; border: none; cursor: pointer; color: var(--color-main); }
+    .mobile-nav ul { list-style: none; padding-top: 10px; margin:0; }
+    .mobile-nav ul li a { display: block; padding: 15px 10px; font-size: 1.1rem; font-weight: 700; color: var(--color-main); border-radius: 6px; transition: background-color .3s, color .3s; }
+    .mobile-nav ul li a:hover { background-color: var(--color-light-bg); color: var(--color-accent); }
+    .mobile-nav .nav-divider { margin: 10px; }
+
+    /* 반응형 처리 */
+    @media (max-width: 992px) {
+        .main-nav, .side-nav { display: none; }
+        .hamburger-btn { display: block; }
+    }
     a:hover{opacity:.7}
     .lang-jp{display:block;font-weight:700}.lang-en{display:block;font-size:.8em;color:#888;letter-spacing:.5px;margin-top:5px;font-weight:400}
     h1,h2,h3,h4{font-family:var(--font-sans);color:var(--color-main);font-weight:700}
     h1 .lang-en,h2 .lang-en,h3 .lang-en,h4 .lang-en{font-family:var(--font-sans);font-style:normal}
-    .main-header{padding:20px 0;background-color:rgba(255,255,255,.85);backdrop-filter:blur(10px);border-bottom:1px solid #eaeaea;position:sticky;top:0;z-index:1000}
-    .header-container{display:flex;justify-content:space-between;align-items:center}
-    .logo{font-family:var(--font-serif);font-size:2.2rem;color:var(--color-main)}
-    .header-right{display:flex;align-items:center}
-    .main-nav a{color:var(--color-main);margin:0 20px;font-weight:700}
     .lang-switcher{font-size:.9rem;margin-left:20px;padding-left:20px;border-left:1px solid #ddd}
     .lang-switcher a{color:#999;font-weight:700;margin:0 4px}
     .lang-switcher a.active{color:var(--color-main)}
@@ -71,7 +262,19 @@
     .side-nav a:hover{opacity:1;transform:translateX(5px)}
     .side-nav a::before{content:'';display:inline-block;width:12px;height:2px;background-color:var(--color-main);margin-right:10px;transform:scaleX(0);transform-origin:left;transition:transform .3s ease}
     .side-nav a:hover::before{transform:scaleX(1)}
-    .content-section{padding:120px 0;position:relative}.content-section.light-bg{background-color:var(--color-light-bg)}.section-header{text-align:center;margin-bottom:70px}.section-header h2{font-size:2.8rem}.section-header p{font-size:1.1rem;max-width:700px;margin:20px auto 0;color:#555}.btn{display:inline-block;padding:12px 30px;background-color:var(--color-main);color:#fff;font-weight:700;border-radius:4px;text-align:center;transition:all .4s ease}.btn:hover{background-color:var(--color-accent)}.btn.btn-outline{background-color:transparent;color:var(--color-main);border:2px solid var(--color-main)}.btn.btn-outline:hover{background-color:var(--color-main);color:#fff}.text-center{text-align:center;margin-top:60px}
+    .content-section{padding:120px 0;position:relative}.content-section.light-bg{background-color:var(--color-light-bg)}.section-header{text-align:center;margin-bottom:70px}.section-header h2{font-size:2.8rem}.section-header p{font-size:1.1rem;max-width:700px;margin:20px auto 0;color:#555}.btn{display:inline-block;padding:12px 30px;background-color:var(--color-main);color:#fff;font-weight:700;border-radius:4px;text-align:center;transition:all .4s ease}.btn:hover {
+    background-color: var(--color-accent);
+    transform: translateY(-3px); /* 살짝 떠오르는 효과 */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); /* 그림자 효과 */
+    opacity: 1; /* 기존 opacity 효과는 제거하거나 1로 유지 */
+}
+
+.btn.btn-outline:hover {
+    background-color: var(--color-main);
+    color: #fff;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
     
     /* ★★★ 하이라이트 섹션 (워터마크/뱃지 스타일) ★★★ */
     .highlight-feature{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;margin-bottom:120px}
@@ -107,8 +310,33 @@
     .hotspot-label{position:absolute;bottom:120%;left:50%;transform:translateX(-50%);background-color:var(--color-main);color:#fff;padding:8px 15px;border-radius:6px;white-space:nowrap;opacity:0;transition:all .3s ease;pointer-events:none;font-weight:700}
     .map-hotspot:hover .hotspot-label{opacity:1}
     @keyframes pulse{0%{transform:scale(1);box-shadow:0 0 0 0 rgba(0,0,0,.3)}70%{transform:scale(1.1);box-shadow:0 0 0 25px transparent}100%{transform:scale(1);box-shadow:0 0 0 0 transparent}}
-    .card-grid{display:grid;grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 35px;
+   
+
+
+/* ★★★ Card Slider Styles ★★★ */
+.card-slider-wrapper { position: relative; padding: 0 20px; }
+.card-slider {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 85%;
+    gap: 25px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.card-slider::-webkit-scrollbar { display: none; }
+.card-slider > .info-card { scroll-snap-align: start; }
+.slider-controls { display: none; justify-content: space-between; position: absolute; top: 50%; left: 0; width: 100%; transform: translateY(-50%); pointer-events: none; }
+.slider-controls .slider-btn { background-color: rgba(255, 255, 255, 0.8); border: 1px solid #ddd; border-radius: 50%; width: 45px; height: 45px; font-size: 1.5rem; color: var(--color-main); cursor: pointer; pointer-events: all; box-shadow: 0 2px 5px rgba(0,0,0,0.1); transition: all .3s ease; }
+.slider-controls .slider-btn:hover { background-color: #fff; transform: scale(1.1); }
+.slider-controls .slider-btn.prev { margin-left: -5px; }
+.slider-controls .slider-btn.next { margin-right: -5px; }
+
+@media (min-width: 768px) { .card-slider { grid-auto-columns: calc(50% - 12.5px); } }
+@media (min-width: 992px) {
+    .card-slider { grid-auto-columns: calc(33.33% - 17px); }
+    .slider-controls { display: flex; }
 }
     /* ★★★ Sub-Highlight 카드 디자인 개선 ★★★ */
     .info-card {
@@ -169,120 +397,96 @@
     .info-card .btn-wrapper {
         margin-top: 20px;
     }
-    .connect-section{padding:100px 0;background:var(--color-main);color:#fff;text-align:center}.connect-section h2{color:#fff;font-family:var(--font-serif)}.connect-section p{color:rgba(255,255,255,.8);max-width:600px;margin:20px auto 40px}.connect-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;max-width:900px;margin:0 auto}.social-icons a{display:inline-block;width:50px;height:50px;background-color:rgba(255,255,255,.1);border-radius:50%;margin:0 8px;line-height:50px;text-align:center;transition:all .3s ease}.social-icons a:hover{background-color:var(--color-accent)}
-    .main-footer{padding:60px 0;background-color:#222;color:#aaa}.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px}.footer-grid h4{font-family:var(--font-sans);color:#fff;font-size:1rem;margin-bottom:15px}.footer-grid ul{list-style:none;padding:0}.footer-grid li{margin-bottom:10px}.footer-grid a{color:#aaa}.footer-grid a:hover{color:#fff}.copyright{text-align:center;padding-top:40px;margin-top:40px;border-top:1px solid #444}
-    @media (max-width:992px){.side-nav{display:none}.highlight-feature,.showcase-item{grid-template-columns:1fr}.highlight-feature:nth-child(even) .feature-image,.showcase-item:nth-child(even) .showcase-image{grid-column:1/2}.footer-grid{grid-template-columns:1fr 1fr}}
-    @media (max-width:768px){.header-container{flex-direction:column;gap:15px}.hero h1{font-size:2.8rem}.card-grid,.event-grid,.service-grid,.connect-grid{grid-template-columns:1fr}.event-card.main-event{min-height:400px}.footer-grid{grid-template-columns:1fr}}
+   
     
-    /* =================================================
-       Plan Section (Shop, Dine, Experience) - 최종 디자인
-    ==================================================== */
-    #plan {
-        background-color: var(--color-light-bg);
-        padding: 150px 0;
-    }
-    
-    .editorial-grid {
-        display: grid;
-        grid-template-columns: repeat(12, 1fr);
-        grid-auto-rows: minmax(100px, auto);
-        gap: 30px;
-        position: relative;
-    }
-    
-    .editorial-item {
-        position: relative;
-        grid-column: span 4; /* 기본적으로 4칸 차지 */
-        min-height: 480px;
-    }
-    
-    .editorial-item a {
-        display: block;
-        width: 100%;
-        height: 100%;
-        border-radius: 12px;
-        overflow: hidden;
-        box-shadow: 0 20px 50px rgba(26, 41, 64, 0.15);
-        transition: all 0.4s ease;
-    }
-    
-    .editorial-item a:hover {
-        transform: translateY(-10px) scale(1.02);
-        box-shadow: 0 30px 60px rgba(26, 41, 64, 0.2);
-    }
-    
-    .editorial-image {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-    }
-    
-    .editorial-image img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transition: transform 0.6s ease;
-    }
-    
-    .editorial-item a:hover .editorial-image img {
-        transform: scale(1.1);
-    }
-    
-    .editorial-content {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        padding: 30px;
-        color: #fff;
-        background: linear-gradient(to top, rgba(0,0,0,0.8) 20%, transparent 100%);
-        z-index: 2;
-    }
-    
-    .editorial-content h3 {
-        font-family: var(--font-serif);
-        font-size: 2.5rem;
-        color: #fff;
-        line-height: 1.2;
-        text-shadow: 0 2px 5px rgba(0,0,0,0.5);
-    }
-    
-    .editorial-content h3 .lang-en {
-        font-size: 1.1rem;
-        color: rgba(255,255,255,0.8);
-    }
-    
-    /* 그리드 위치 조정으로 콜라주 효과 생성 */
-    .editorial-item.dining {
-        margin-top: -60px;
-        margin-bottom: 60px;
-    }
-    
-    @media (max-width: 992px) {
-        .editorial-item {
-            grid-column: span 6;
-            min-height: 400px;
-        }
-        .editorial-item.experiences {
-            grid-column: 3 / span 6; /* 태블릿에서 겹침 효과 */
-            margin-top: -50px;
-        }
-    }
-    
-    @media (max-width: 768px) {
-        .editorial-item {
-            grid-column: span 12;
-            min-height: 350px;
-            margin-top: 0 !important;
-            margin-bottom: 0 !important;
-        }
-         .editorial-item.experiences {
-            grid-column: span 12;
-        }
-    }
+ /* =================================================
+   PLAN SECTION (FINAL - Asymmetrical Collage Layout)
+==================================================== */
+#plan {
+    background-color: var(--color-light-bg);
+    overflow: hidden; /* 패럴랙스 효과 시 이미지가 벗어나지 않도록 */
+}
 
+.collage-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(4, 120px); /* 그리드 높이 기준 설정 */
+    gap: 25px;
+}
+
+.collage-item {
+    position: relative;
+    display: block;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+}
+
+.collage-image-wrapper {
+    width: 100%;
+    height: 100%;
+}
+
+.collage-image {
+    width: 100%;
+    height: 120%; /* 패럴랙스 효과를 위해 이미지 높이를 더 크게 설정 */
+    object-fit: cover;
+    transition: transform 0.8s ease-out;
+}
+
+.collage-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 30px;
+    color: #fff;
+    z-index: 2;
+    background: linear-gradient(to top, rgba(0,0,0,0.7) 10%, transparent 80%);
+}
+.collage-content h4 {
+    font-family: var(--font-serif);
+    font-size: 2rem;
+    color: #fff;
+    line-height: 1.2;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+}
+.collage-content p {
+    font-size: 1rem;
+    opacity: 0.9;
+}
+
+/* 그리드 아이템별 위치와 크기 지정 */
+.collage-item--1 { grid-column: 1 / span 5; grid-row: 1 / span 3; }
+.collage-item--2 { grid-column: 6 / span 7; grid-row: 1 / span 2; }
+.collage-item--3 { grid-column: 1 / span 7; grid-row: 4 / span 1; }
+.collage-item--4 { grid-column: 8 / span 5; grid-row: 3 / span 2; }
+
+/* 호버 효과 */
+.collage-item:hover .collage-image {
+    transform: scale(1.05) translateY(-5%);
+}
+
+/* 반응형 레이아웃 */
+@media (max-width: 992px) {
+    .collage-grid {
+        grid-template-columns: repeat(6, 1fr);
+        grid-template-rows: repeat(4, 150px);
+    }
+    .collage-item--1 { grid-column: 1 / span 3; grid-row: 1 / span 2; }
+    .collage-item--2 { grid-column: 4 / span 3; grid-row: 1 / span 2; }
+    .collage-item--3 { grid-column: 1 / span 6; grid-row: 3 / span 1; }
+    .collage-item--4 { grid-column: 1 / span 6; grid-row: 4 / span 1; }
+}
+@media (max-width: 768px) {
+    .collage-grid {
+        display: flex; /* 모바일에서는 단순 세로 배치로 변경 */
+        flex-direction: column;
+    }
+    .collage-item {
+        height: 350px; /* 각 아이템 높이 고정 */
+    }
+}
 /* =================================================
    TESTIMONIALS SECTION (FINAL - Hybrid Layout)
 ==================================================== */
@@ -490,7 +694,7 @@
 @media (max-width: 992px) {
     /* 전반적인 여백 조정 */
     .content-section {
-        padding: 100px 0;
+        padding: 120px 0;
     }
     
     /* 헤더 네비게이션 숨기기 (햄버거 메뉴를 위한 준비 단계) */
@@ -503,10 +707,7 @@
         gap: 40px;
     }
 
-    /* 카드 그리드 2열로 변경 */
-    .card-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
+
 
     /* 플랜 섹션(Editorial) 태블릿 레이아웃 */
     .editorial-item {
@@ -531,6 +732,10 @@
         line-height: 1.7;
         -webkit-text-size-adjust: 100%; /* iOS에서 폰트 크기 자동 조절 방지 */
     }
+    .btn.full-width-mobile {
+    width: 100%;
+    padding: 15px 0;
+}
 
     /* --- 헤더 & 히어로 --- */
     .header-container {
@@ -568,11 +773,10 @@
     .highlight-feature .feature-content {
         text-align: left !important; /* 텍스트 정렬 통일 */
     }
-    .card-grid,
+    
     .event-grid,
     .service-grid,
     .connect-grid,
-    .footer-grid,
     .testimonial-grid-v4 {
         grid-template-columns: 1fr; /* 모든 그리드를 1열로 변경 */
     }
@@ -595,7 +799,6 @@
     }
 
     /* card-grid, editorial-grid를 flex-grid로 변경 */
-.card-grid,
 .service-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -613,6 +816,33 @@
     .map-hotspot.yurakucho{ top: 65%; left: 28%; }
     .map-hotspot.marunouchi{ top: 48%; left: 48%; }
     .map-hotspot.otemachi{ top: 25%; left: 70%; }
+
+    /* ★★★ Interactive Map & Tooltip Styles ★★★ */
+.map-hotspot.interactive {
+    background-color: var(--color-accent);
+    animation-delay: 0.5s;
+}
+.map-tooltip {
+    position: fixed; /* 화면 기준 위치 */
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    width: 300px;
+    z-index: 1100;
+    pointer-events: none; /* 툴팁 위로 마우스가 가도 이벤트가 막히지 않음 */
+    opacity: 0;
+    transform: scale(0.95);
+    transition: opacity .3s ease, transform .3s ease;
+}
+.map-tooltip.visible {
+    opacity: 1;
+    transform: scale(1);
+}
+.map-tooltip .card-image-wrapper { height: 150px; }
+.map-tooltip .card-content-wrapper { padding: 15px; }
+.map-tooltip .card-tag { font-size: 0.7rem; padding: 3px 8px; margin-bottom: 8px; }
+.map-tooltip h3 { font-size: 1.1rem; margin-bottom: 5px; }
+.map-tooltip p { font-size: 0.85rem; line-height: 1.5; }
 
     /* 플랜 섹션(Editorial) 모바일 레이아웃 */
     .editorial-item,
@@ -641,16 +871,7 @@
     }
     .photo-stack {
         margin: 0 auto;
-    }
-
-    /* 푸터 텍스트 정렬 */
-    .footer-grid {
-        text-align: center;
-    }
-    .footer-grid .footer-col {
-        margin-bottom: 20px;
-    }
-}
+    }}
 /* =================================================
    ALL NAVIGATION STYLES (PC Side-Nav & Mobile Hamburger)
 ==================================================== */
@@ -822,6 +1043,20 @@ a:focus-visible, button:focus-visible, [role="tab"]:focus-visible {
   align-items:center;
   justify-content:center;
   text-align:center;
+  z-index: 2;
+}
+.hero::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.25); /* 어두운 오버레이 */
+    z-index: 1; /* 텍스트보다 아래, 이미지보다 위에 위치 */
+}
+.hero-controls-wrapper {
+    z-index: 2;
 }
 .hero::before {
   content:'';
@@ -1109,24 +1344,47 @@ a:focus-visible, button:focus-visible, [role="tab"]:focus-visible {
 }
 
 
-/* 3. 스태거 애니메이션을 위한 기본 상태 */
+/* =================================================
+   EVENT CARD ANIMATION (ULTIMATE FINAL FIX)
+==================================================== */
+
+/* 1. 애니메이션 효과를 정의합니다. (기존과 동일) */
 @keyframes fadeInUp {
     from {
         opacity: 0;
-        transform: translateY(30px);
+        transform: translateY(20px);
     }
     to {
         opacity: 1;
         transform: translateY(0);
     }
 }
+
+/* 2. event-card-v3의 모든 스타일을 여기서 한번에, 충돌 없이 정의합니다. */
 .event-card-v3 {
-    /* 카드를 기본적으로 투명하게 만듭니다. */
-    opacity: 0; 
+    display: flex;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0,64,64,0.08);
+    overflow: hidden;
+    
+    /* ★★★ 핵심 수정: transition 대상을 명확히 지정하여 충돌을 막습니다. ★★★ */
+    /* opacity는 animation으로만 제어하고, transition은 transform과 box-shadow만 담당합니다. */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    
+
 }
+
+/* 3. is-visible 클래스가 붙으면 애니메이션 실행 */
 .event-card-v3.is-visible {
-    /* is-visible 클래스가 추가되면 애니메이션을 실행합니다. */
+    /* 이 규칙은 animation 속성만 제어합니다. */
     animation: fadeInUp 0.8s ease-out forwards;
+}
+
+/* 4. 호버 효과는 is-visible 상태와 관계없이 작동합니다. */
+.event-card-v3:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 16px 40px rgba(0,64,64,0.12);
 }
 
 /* =================================================
@@ -1191,7 +1449,7 @@ a:focus-visible, button:focus-visible, [role="tab"]:focus-visible {
 /* 히어로 슬라이드 컨트롤러 최종 스타일 */
 .hero-slideshow .slide {
     opacity: 0;
-    transition: opacity 1.5s ease-in-out;
+    transition: opacity 2s ease-in-out;
 }
 .hero-slideshow .slide.active {
     opacity: 1;
@@ -1320,6 +1578,364 @@ a:focus-visible, button:focus-visible, [role="tab"]:focus-visible {
         padding-bottom: 80px;
     }
 }
+/* =================================================
+   FINAL LAYOUT & RESPONSIVE FIX
+==================================================== */
+
+/* 1. 버튼 중앙 정렬 및 섹션 여백 문제 해결 */
+
+/* 모든 주요 섹션의 상하 여백을 이 규칙으로 통일합니다. */
+.content-section, 
+.area-map-section {
+    padding-top: 120px;
+    padding-bottom: 120px;
+}
+
+/* text-align으로 해결되지 않던 문제를 flexbox로 확실하게 중앙 정렬합니다. */
+.text-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 60px;
+}
+
+/* 2. 모바일 '외국인 보이스' 사진 레이아웃 최적화 */
+@media (max-width: 768px) {
+    .testimonial-photos-col {
+        min-height: auto; /* 기존 높이 제한 제거 */
+        width: 100%;
+    }
+
+    .photo-stack {
+        position: static; /* 기존 겹치는 효과 제거 */
+        height: auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr; /* 2열 그리드로 변경 */
+        gap: 10px;
+        max-width: 100%; /* 전체 너비 사용 */
+        margin: 20px 0 0 0;
+    }
+
+    .photo-stack .memory-photo {
+        position: static; /* 기존 겹치는 효과 제거 */
+        width: 100%; /* 그리드 셀에 꽉 차게 */
+        height: 120px; /* 적절한 높이 지정 */
+        object-fit: cover;
+        transform: none !important; /* 회전 효과 제거 */
+        border-radius: 8px; /* 모서리 다듬기 */
+    }
+    .photo-stack .memory-photo:hover {
+        transform: scale(1.05) !important; /* 호버 효과 단순화 */
+        z-index: auto;
+    }
+}
+/* =================================================
+   INFO-CARD DESIGN RESTORATION & ENHANCEMENT
+==================================================== */
+
+/* info-card 최종 디자인 복원 및 강화 */
+.info-card {
+    background-color: #fff;
+    border-radius: 12px; /* 모서리를 좀 더 둥글게 */
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05); /* 기본 그림자 */
+    transition: all .3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #eee; /* 흰색 배경에서 카드를 구분하기 위한 얇은 테두리 추가 */
+    text-decoration: none; /* 링크 밑줄 제거 */
+}
+
+.info-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.1);
+}
+
+.info-card .card-image-wrapper {
+    height: 220px; /* 이미지 높이 재조정 */
+    overflow: hidden;
+    position: relative;
+}
+
+.info-card .card-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform .5s ease;
+}
+
+.info-card:hover .card-image-wrapper img {
+    transform: scale(1.05);
+}
+
+.info-card .card-content-wrapper {
+    padding: 20px;
+    text-align: left;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-tag {
+    display: inline-block;
+    padding: 4px 12px;
+    background-color: var(--color-accent);
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 700;
+    border-radius: 50px;
+    margin-bottom: 12px;
+    align-self: flex-start;
+}
+
+/* ★★★ 이전에 너무 커졌던 타이틀 크기를 여기서 최종적으로 수정합니다. ★★★ */
+.info-card h3 {
+    font-size: 1.25rem; /* 적절한 크기로 조정 */
+    color: var(--color-main);
+    padding: 0;
+    margin-bottom: 8px;
+    line-height: 1.4;
+}
+
+.card-description {
+    font-size: 0.9rem;
+    color: #555;
+    flex-grow: 1; 
+}
+/* SOCIAL WALL (MASONRY) - 충돌 방지용 덮어쓰기 */
+.social-grid {
+  column-count: 4;
+  column-gap: 28px;
+  margin: 54px auto 0 auto;
+  max-width: 1280px;
+  padding-bottom: 60px;
+}
+.social-card {
+  display: block;
+  width: 100%;
+  margin-bottom: 28px;
+  border-radius: 24px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 6px 32px 0 rgba(30,60,90,0.11),
+              0 0.5px 3px 0 rgba(40,40,80,0.06);
+  transition: box-shadow .33s, transform .25s cubic-bezier(.33,1.2,.41,1.01);
+  position: relative;
+  animation: fadeInCard .7s cubic-bezier(.45,1.13,.37,.98);
+}
+
+@keyframes fadeInCard {
+  from { opacity: 0; transform: translateY(30px) scale(.98);}
+  to   { opacity: 1; transform: translateY(0) scale(1);}
+}
+
+.social-card:hover {
+  box-shadow: 0 18px 48px 0 rgba(30,40,80,0.18), 0 2px 10px 0 rgba(60,60,90,0.09);
+  transform: translateY(-7px) scale(1.025);
+  z-index: 3;
+}
+.social-card img {
+  width: 100%; aspect-ratio: 4/3;
+  object-fit: cover;
+  transition: filter .33s, transform .36s cubic-bezier(.38,1.2,.46,1.01);
+}
+.social-card:hover img {
+  filter: brightness(0.90) blur(0.3px);
+  transform: scale(1.04);
+}
+
+/* 인스타 라벨 스타일 더 튀게 */
+.ig-badge {
+  position: absolute; top: 15px; right: 16px; z-index: 10;
+  background: rgba(255,255,255,0.92);
+  color: #d62976;
+  border-radius: 50%;
+  box-shadow: 0 3px 18px rgba(215,41,118,0.12);
+  width: 38px; height: 38px; display: flex; align-items: center; justify-content: center;
+  font-size: 24px; font-weight: 700;
+  border: 2.5px solid #fff;
+  opacity: 0.98; transition: box-shadow .22s, transform .19s;
+}
+
+/* hover시 사진 위에 overlay 효과 */
+.social-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(215,41,118,0.88) 0%, rgba(0,70,127,0.76) 100%);
+  color: #fff; display: flex; flex-direction: column; justify-content: center; align-items: center;
+  opacity: 0; font-size: 1.18em; font-weight: 500;
+  letter-spacing: 0.02em; transition: opacity .32s;
+  text-align: center; gap: 16px; cursor: pointer;
+  backdrop-filter: blur(2.5px);
+}
+.social-card:hover .social-overlay {
+  opacity: 1;
+}
+.social-overlay svg { filter: drop-shadow(0 4px 12px rgba(0,0,0,0.13)); }
+.social-overlay span {
+  margin-top: 8px; font-size: 1.15em; font-weight: 700;
+  text-shadow: 0 3px 18px rgba(0,0,0,0.18); letter-spacing: .04em;
+}
+#social-wall {
+  background: linear-gradient(110deg, #f9fafd 65%, #f1f1fa 100%);
+}
+@media (max-width: 700px) {
+  .social-grid {
+    column-count: 1 !important;
+    column-gap: 0 !important;
+    max-width: 100vw !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+  .social-card {
+    border-radius: 12px;
+    margin-bottom: 18px;
+    /* 여백, 그림자 등 모바일 맞춤 추가도 여기에! */
+  }
+}
+/* =================================
+   ★★★ 통합 푸터 CSS ★★★
+   ================================= */
+
+/* --- 1. 전체 푸터 영역 --- */
+.main-footer {
+    background-color: #181818; /* 배경색 통일 */
+    color: #a0a0a0;
+    padding: 60px 0 40px;
+    font-size: 16px;
+}
+
+/* --- 2. 상단 CTA (소셜/다운로드) 영역 --- */
+.footer-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 40px;
+    flex-wrap: wrap; /* 모바일에서 줄바꿈 */
+    gap: 20px;
+}
+.footer-social h4 {
+    font-family: var(--font-sans);
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+.social-icons a {
+    display: inline-block;
+    width: 44px;
+    height: 44px;
+    background-color: rgba(255, 255, 255, 0.05);
+    color: #fff;
+    border-radius: 50%;
+    margin-right: 10px;
+    text-align: center;
+    line-height: 44px;
+    transition: all .3s ease;
+}
+.social-icons a svg {
+    width: 22px;
+    height: 22px;
+    vertical-align: middle;
+}
+.social-icons a:hover {
+    background-color: var(--color-accent);
+    transform: translateY(-3px);
+}
+.footer-guide {
+    text-align: right;
+}
+.footer-guide p {
+    margin-bottom: 10px;
+    font-size: 0.9em;
+}
+.btn.btn-outline { /* 버튼 스타일 재정의 */
+    border: 1px solid var(--color-accent);
+    background-color: transparent;
+    color: var(--color-accent);
+    padding: 10px 25px;
+}
+.btn.btn-outline:hover {
+    background-color: var(--color-accent);
+    color: #fff;
+}
+
+/* --- 3. 구분선 --- */
+.footer-divider {
+    height: 1px;
+    background-color: #333;
+    margin-bottom: 50px;
+}
+
+/* --- 4. 메인 링크 (사이트맵) 영역 --- */
+.footer-main {
+    display: grid;
+    grid-template-columns: 2.5fr 1fr 1.5fr 1fr; /* 레이아웃 비율 조정 */
+    gap: 40px;
+}
+.footer-main .logo {
+    color: #fff;
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    display: inline-block;
+}
+.footer-main .about-col p {
+    line-height: 1.6;
+    max-width: 300px;
+}
+.footer-col h4 {
+    font-family: var(--font-sans);
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+.footer-col ul { list-style: none; padding: 0; }
+.footer-col li { margin-bottom: 12px; }
+.footer-col a {
+    color: #a0a0a0;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+.footer-col a:hover {
+    color: #fff;
+}
+
+/* --- 5. 하단 저작권 영역 --- */
+.footer-bottom {
+    text-align: center;
+    padding-top: 50px;
+    margin-top: 20px;
+    border-top: 1px solid #333;
+    font-size: 0.9rem;
+    color: #777;
+}
+
+/* --- 6. 푸터 반응형 --- */
+@media (max-width: 992px) {
+    .footer-main {
+        grid-template-columns: 1fr 1fr;
+    }
+    .footer-main .about-col {
+        grid-column: 1 / -1; /* 모바일에서는 로고/설명 영역이 전체 너비 차지 */
+        margin-bottom: 20px;
+    }
+}
+@media (max-width: 768px) {
+    .footer-top, .footer-guide {
+        text-align: center;
+        width: 100%;
+        justify-content: center;
+    }
+    .footer-main {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    .footer-main .about-col p {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
     </style>
     </head>
     
@@ -1327,6 +1943,13 @@ a:focus-visible, button:focus-visible, [role="tab"]:focus-visible {
     
         <nav class="side-nav">
             <ul>
+                <li class="nav-category">テーマ別</li>
+                <li><a href="art.html">Art & Architecture</a></li>
+                <li><a href="gourmet.html">Gourmet</a></li>
+                <li><a href="shopping.html">Shopping</a></li>
+                <li><a href="relax.html">Relaxation</a></li>
+                <li class="nav-divider"></li>
+                <li class="nav-category">Index</li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#highlights">Highlights</a></li>
                 <li><a href="#events">Events</a></li>
@@ -1347,12 +1970,21 @@ a:focus-visible, button:focus-visible, [role="tab"]:focus-visible {
                     </button>
                 </div>
                 <ul>
+                    <li class="nav-category">--- テーマ別に見る ---</li>
+                    <li><a href="art.html">Art & Architecture</a></li>
+                    <li><a href="gourmet.html">Gourmet</a></li>
+                    <li><a href="shopping.html">Shopping</a></li>
+                    <li><a href="relax.html">Relaxation</a></li>
+                    
+                    <li class="nav-divider"></li> 
+                    
+                    <li class="nav-category">--- セクション一覧 ---</li>
                     <li><a href="#about">About</a></li>
                     <li><a href="#highlights">Highlights</a></li>
                     <li><a href="#events">Events</a></li>
                     <li><a href="#services">Services</a></li>
                     <li><a href="#yourday">Your Day</a></li>
-                    <li><a href="#testimonials">Voices</a></li>
+                    <li><a href="#testimonials">Voices</a></li> 
                     <li><a href="#map">Map</a></li>
                     <li><a href="#plan">Plan</a></li>
                 </ul>
@@ -1364,9 +1996,17 @@ a:focus-visible, button:focus-visible, [role="tab"]:focus-visible {
                 <a href="index.html" class="logo">marunouchi.com</a>
                 <div class="header-right">
                     <nav class="main-nav">
-                        <a href="#">Explore</a>
-                        <a href="#">Lifestyle</a>
-                        <a href="#">Experiences</a>
+                        <div class="dropdown">
+                            <button class="dropbtn">テーマ別に見る ▼</button>
+                            <div class="dropdown-content">
+                                <a href="art.html">Art & Architecture</a>
+                                <a href="gourmet.html">Gourmet</a>
+                                <a href="shopping.html">Shopping</a>
+                                <a href="relax.html">Relaxation</a>
+                            </div>
+                        </div>
+                        <a href="#events">Events</a>
+                        <a href="#map">Map</a>
                     </nav>
                     <div class="lang-switcher">
                         <a href="#" class="active">JP</a><a href="#">EN</a><a href="#">简</a><a href="#">繁</a><a href="#">KO</a>
@@ -1457,51 +2097,65 @@ a:focus-visible, button:focus-visible, [role="tab"]:focus-visible {
                         <div class="section-header">
                             <h3 style="font-size: 2rem;"><span class="lang-jp">あわせて訪れたい場所</span><span class="lang-en">Also Recommended</span></h3>
                         </div>
-                        <div class="card-grid">
-                            <a href="#" class="info-card">
-                                <div class="card-image-wrapper">
-                                    <img src="https://tokyo-marunouchi.jp/dmo_wp_YfehP9/wp-content/uploads/2018/01/916faeef1ab8fe3fb20bb42ef55051f4.jpg" alt="Mitsubishi Ichigokan Museum">
-                                </div>
-                                <div class="card-content-wrapper">
-                                    <span class="card-tag">ART & HISTORY</span>
-                                    <h3><span class="lang-jp">三菱一号館美術館</span><span class="lang-en">Mitsubishi Ichigokan Museum</span></h3>
-                                    <p class="card-description">
-                                        <span class="lang-jp">19世紀の建築物の中で、<span class="keyword-badge">モダンアート</span>の神髄に触れることができます。</span>
-                                        <span class="lang-en">Experience the essence of <span class="keyword-badge">modern art</span> inside 19th-century architecture.</span>
-                                    </p>
-                                </div>
-                            </a>
-                            <a href="#" class="info-card">
-                                <div class="card-image-wrapper">
-                                    <img src="https://visit-chiyoda.tokyo/app/upload/images/higashi_gyoen_c1.jpg" alt="Imperial Palace East Garden">
-                                </div>
-                                 <div class="card-content-wrapper">
-                                    <span class="card-tag">NATURE & OASIS</span>
-                                    <h3><span class="lang-jp">皇居東御苑</span><span class="lang-en">Imperial Palace East Garden</span></h3>
-                                    <p class="card-description">
-                                        <span class="lang-jp">都会の<span class="keyword-badge">喧騒</span>を離れ、江戸城の遺産の中で静けさを感じてみてください。</span>
-                                        <span class="lang-en">Escape the city's <span class="keyword-badge">hustle and bustle</span> and feel the tranquility amidst the legacy of Edo Castle.</span>
-                                    </p>
-                                </div>
-                            </a>
-                             <a href="#" class="info-card">
-                                <div class="card-image-wrapper">
-                                     <img src="https://marunouchi.jp-kitte.jp/cmsdata/static/fig_facility-garden02.jpg" alt="KITTE Garden">
-                                </div>
-                                 <div class="card-content-wrapper">
-                                    <span class="card-tag">VIEW & ARCHITECTURE</span>
-                                    <h3><span class="lang-jp">KITTEガーデン</span><span class="lang-en">KITTE Garden</span></h3>
-                                    <p class="card-description">
-                                        <span class="lang-jp">東京駅舎を最も美しく眺められる屋上庭園で、<span class="keyword-badge">フォトジェニック</span>な瞬間を。</span>
-                                        <span class="lang-en">For that perfect <span class="keyword-badge">photogenic</span> moment at the rooftop garden with the best view of Tokyo Station.</span>
-                                    </p>
-                                </div>
-                            </a>
+                        
+                        <div class="card-slider-wrapper">
+                            <div class="card-slider" id="recommended-slider">
+                                <a href="#" class="info-card" data-card-id="card-1">
+                                    <div class="card-image-wrapper"><img src="https://tokyo-marunouchi.jp/dmo_wp_YfehP9/wp-content/uploads/2018/01/916faeef1ab8fe3fb20bb42ef55051f4.jpg" alt="Mitsubishi Ichigokan Museum" loading="lazy"></div>
+                                    <div class="card-content-wrapper">
+                                        <span class="card-tag">ART & HISTORY</span>
+                                        <h3>三菱一号館美術館</h3>
+                                        <p class="card-description">19세기 건축물 안에서 모던 아트의 정수를 느껴보세요.</p>
+                                    </div>
+                                </a>
+                                <a href="#" class="info-card" data-card-id="card-2">
+                                    <div class="card-image-wrapper"><img src="https://visit-chiyoda.tokyo/app/upload/images/higashi_gyoen_c1.jpg" alt="Imperial Palace East Garden" loading="lazy"></div>
+                                    <div class="card-content-wrapper">
+                                        <span class="card-tag">NATURE & OASIS</span>
+                                        <h3>皇居東御苑</h3>
+                                        <p class="card-description">도심의 소란을 벗어나 에도성의 유산 속에서 평온함을 느껴보세요.</p>
+                                    </div>
+                                </a>
+                                <a href="#" class="info-card" data-card-id="card-3">
+                                    <div class="card-image-wrapper"><img src="https://marunouchi.jp-kitte.jp/cmsdata/static/fig_facility-garden02.jpg" alt="KITTE Garden" loading="lazy"></div>
+                                     <div class="card-content-wrapper">
+                                        <span class="card-tag">VIEW & ARCHITECTURE</span>
+                                        <h3>KITTEガーデン</h3>
+                                        <p class="card-description">도쿄역사를 가장 아름답게 조망할 수 있는 루프탑 정원입니다.</p>
+                                    </div>
+                                </a>
+                                <a href="#" class="info-card" data-card-id="card-4">
+                                    <div class="card-image-wrapper"><img src="https://upload.wikimedia.org/wikipedia/commons/2/27/Marunouchi_Building.JPG" alt="Marunouchi Building" loading="lazy"></div>
+                                     <div class="card-content-wrapper">
+                                        <span class="card-tag">SHOP & DINE</span>
+                                        <h3>丸ビル (丸の内ビルディング)</h3>
+                                        <p class="card-description">다양한 숍과 레스토랑이 모여있는 마루노우치의 대표적인 복합 빌딩입니다.</p>
+                                    </div>
+                                </a>
+                                <a href="#" class="info-card" data-card-id="card-5">
+                                    <div class="card-image-wrapper"><img src="data:image/jpeg;base64,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" alt="Marunouchi Brick Square" loading="lazy"></div>
+                                     <div class="card-content-wrapper">
+                                        <span class="card-tag">GARDEN & CAFE</span>
+                                        <h3>丸の内ブリックスクエア</h3>
+                                        <p class="card-description">녹음이 우거진 광장을 중심으로 개성 넘치는 숍과 카페가 모여있는 공간입니다.</p>
+                                    </div>
+                                </a>
+                                <a href="#" class="info-card" data-card-id="card-6">
+                                    <div class="card-image-wrapper"><img src="data:image/jpeg;base64,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" alt="Gyoko-dori Avenue" loading="lazy"></div>
+                                     <div class="card-content-wrapper">
+                                        <span class="card-tag">VIEW & PROMENADE</span>
+                                        <h3>行幸通り</h3>
+                                        <p class="card-description">도쿄역과 황궁을 잇는 상징적인 대로로, 아름다운 경관을 자랑합니다.</p>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="slider-controls">
+                                <button class="slider-btn prev" aria-label="Previous items">‹</button>
+                                <button class="slider-btn next" aria-label="Next items">›</button>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </section>
-                       
+                </section>            
 
             <section id="events" class="content-section">
                 <div class="container">
@@ -1578,10 +2232,12 @@ a:focus-visible, button:focus-visible, [role="tab"]:focus-visible {
                             </article>
                         </div>
                     </div>
+             
 
                     <div class="text-center">
-                        <a href="#" target="_blank" rel="noopener" class="btn btn-outline">View All Current Events →</a>
+                        <a href="#" target="_blank" rel="noopener" class="btn btn-outline full-width-mobile">View All Current Events →</a>
                     </div>
+                
 
                     <div class="section-divider">
                         <svg width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M12,18.17L8.83,15L12,11.83L15.17,15M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z"></path></svg>
@@ -1613,8 +2269,6 @@ a:focus-visible, button:focus-visible, [role="tab"]:focus-visible {
                            </a>
                        </div>
                    </div>
-                   
-        
                </div>
            </section>
 
@@ -1755,12 +2409,57 @@ a:focus-visible, button:focus-visible, [role="tab"]:focus-visible {
                         </article>
                     </div>
                 </div>
-            </section>
-            
-            <div id="photoModal" class="modal-overlay">
-                <span class="modal-close-btn">&times;</span>
-                <img class="modal-content" id="modalImage">
-            </div>
+                <section id="social-wall" class="content-section light-bg">
+                    <div class="container wide-container">
+                        <div class="section-header">
+                            <h2>#marunouchi Moments</h2>
+                            <p>リアルタイムで投稿される来訪者たちの素敵な瞬間をご覧ください。</p>
+                        </div>
+                        <div class="social-grid">
+                            <a href="https://www.instagram.com/p/DJayTGUReZQ/" target="_blank" rel="noopener" class="social-card">
+                                <span class="ig-badge" aria-label="Instagram">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/2048px-Instagram_icon.png" width="24" height="24" alt="Instagram" style="display:block;" />
+                                </span>
+                                <img src="https://www.tokyoupdates.metro.tokyo.lg.jp/2023/08/22/shutterstock_1173708514.jpg" alt="Marunouchi instagram post by a user">
+                                <div class="social-overlay">
+                                    <svg width="32" height="32" viewBox="0 0 24 24"><path fill="#fff" d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.2,5.2 0 0,1 16.2,21.4H7.8C4.6,21.4 2,18.8 2,15.6V7.8A5.2,5.2 0 0,1 7.8,2M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7Z"/></svg>
+                                    <span>Instagramで見る</span>
+                                </div>
+                            </a>
+                            <a href="https://www.instagram.com/p/XXX/" target="_blank" rel="noopener" class="social-card">
+                                <span class="ig-badge" aria-label="Instagram">
+                                    <svg width="18" height="18" viewBox="0 0 24 24"><path fill="#d62976" d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.2,5.2 0 0,1 16.2,21.4H7.8C4.6,21.4 2,18.8 2,15.6V7.8A5.2,5.2 0 0,1 7.8,2M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7Z"/></svg>
+                                </span>
+                                <img src="https://img.webuomo.jp/article/parts/image/archive/103055/2020_11_10-03.jpg" alt="Marunouchi instagram post by a user">
+                                <div class="social-overlay">
+                                    <svg width="32" height="32" viewBox="0 0 24 24"><path fill="#fff" d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.2,5.2 0 0,1 16.2,21.4H7.8C4.6,21.4 2,18.8 2,15.6V7.8A5.2,5.2 0 0,1 7.8,2M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7Z"/></svg>
+                                    <span>Instagramで見る</span>
+                                </div>
+                            </a>
+                            <a href="https://www.instagram.com/p/XXX/" target="_blank" rel="noopener" class="social-card">
+                                <span class="ig-badge" aria-label="Instagram">
+                                    <svg width="18" height="18" viewBox="0 0 24 24"><path fill="#d62976" d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.2,5.2 0 0,1 16.2,21.4H7.8C4.6,21.4 2,18.8 2,15.6V7.8A5.2,5.2 0 0,1 7.8,2M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7Z"/></svg>
+                                </span>
+                                <img src="https://img.webuomo.jp/article/parts/image/archive/103055/2020_11_10-03.jpg" alt="Marunouchi instagram post by a user">
+                                <div class="social-overlay">
+                                    <svg width="32" height="32" viewBox="0 0 24 24"><path fill="#fff" d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.2,5.2 0 0,1 16.2,21.4H7.8C4.6,21.4 2,18.8 2,15.6V7.8A5.2,5.2 0 0,1 7.8,2M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7Z"/></svg>
+                                    <span>Instagramで見る</span>
+                                </div>
+                            </a>
+                            <a href="https://www.instagram.com/p/YYY/" target="_blank" rel="noopener" class="social-card">
+                                <span class="ig-badge" aria-label="Instagram">
+                                    <svg width="18" height="18" viewBox="0 0 24 24"><path fill="#d62976" d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.2,5.2 0 0,1 16.2,21.4H7.8C4.6,21.4 2,18.8 2,15.6V7.8A5.2,5.2 0 0,1 7.8,2M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7Z"/></svg>
+                                </span>
+                                <img src="https://d35omnrtvqomev.cloudfront.net/photo/article/article_header/thumbnail_image_path/18968/2d723a5f2719a81bde8e12109fbf8f.jpg" alt="Marunouchi instagram post by a user">
+                                <div class="social-overlay">
+                                    <svg width="32" height="32" viewBox="0 0 24 24"><path fill="#fff" d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.2,5.2 0 0,1 16.2,21.4H7.8C4.6,21.4 2,18.8 2,15.6V7.8A5.2,5.2 0 0,1 7.8,2M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7Z"/></svg>
+                                    <span>Instagramで見る</span>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </section>
+                
             
                         
     
@@ -1898,6 +2597,20 @@ a:focus-visible, button:focus-visible, [role="tab"]:focus-visible {
                         <a href="#" class="map-hotspot yurakucho"><div class="hotspot-label">Yurakucho</div></a>
                         <a href="#" class="map-hotspot marunouchi"><div class="hotspot-label">Marunouchi</div></a>
                         <a href="#" class="map-hotspot otemachi"><div class="hotspot-label">Otemachi</div></a>
+                        <div class="map-image-bg">
+                            <a href="#" class="map-hotspot yurakucho"><div class="hotspot-label">Yurakucho</div></a>
+                            <a href="#" class="map-hotspot marunouchi"><div class="hotspot-label">Marunouchi</div></a>
+                            <a href="#" class="map-hotspot otemachi"><div class="hotspot-label">Otemachi</div></a>
+                        
+                            <a href="#" class="map-hotspot interactive" data-target-card="card-1" style="top: 55%; left: 45%;"><div class="hotspot-label">三菱一号館美術館</div></a>
+                            <a href="#" class="map-hotspot interactive" data-target-card="card-2" style="top: 20%; left: 40%;"><div class="hotspot-label">皇居東御苑</div></a>
+                            <a href="#" class="map-hotspot interactive" data-target-card="card-3" style="top: 52%; left: 58%;"><div class="hotspot-label">KITTEガーデン</div></a>
+                            <a href="#" class="map-hotspot interactive" data-target-card="card-4" style="top: 48%; left: 55%;"><div class="hotspot-label">丸ビル</div></a>
+                            <a href="#" class="map-hotspot interactive" data-target-card="card-5" style="top: 58%; left: 48%;"><div class="hotspot-label">丸の内ブリックスクエア</div></a>
+                            <a href="#" class="map-hotspot interactive" data-target-card="card-6" style="top: 45%; left: 50%;"><div class="hotspot-label">行幸通り</div></a>
+                        </div>
+                        
+                        <div id="map-tooltip" class="map-tooltip"></div>
                     </div>
                     <div class="text-center">
                         <a href="https://maps.google.com/" class="btn" target="_blank" rel="noopener">
@@ -1907,140 +2620,161 @@ a:focus-visible, button:focus-visible, [role="tab"]:focus-visible {
                 </div>
             </section>
     
-    <section id="plan" class="content-section">
+            <section id="plan" class="content-section">
                 <div class="container">
                     <div class="section-header">
-                         <h2><span class="lang-jp">楽しむ・味わう・体験する</span><span class="lang-en">Shop, Dine, and Experience</span></h2>
+                        <h2>
+                            <span class="lang-jp">あなたの「好き」が見つかる一日</span>
+                            <span class="lang-en">A Day, Perfect For You</span>
+                        </h2>
+                        <p>
+                            <span class="lang-jp">誰もが自分らしい楽しみ方を見つけられる街、丸の内。あなたのスタイルにぴったりの一日を発견しましょう。</span>
+                            <span class="lang-en">In Marunouchi, everyone can find their own joy. Let's discover a day that perfectly matches your style.</span>
+                        </p>
                     </div>
-                    <div class="editorial-grid">
-    
-                        <div class="editorial-item shopping">
-                            <a href="#">
-                                <div class="editorial-image"><img src="https://marunouchi.g.kuroco-img.app/v=1702566605/files/topics/3_ext_6_0.jpg?width=1380" alt="Shopping"></div>
-                                <div class="editorial-content">
-                                    <h3><span class="lang-jp">ショッピング</span><span class="lang-en">Shopping</span></h3>
-                                </div>
-                            </a>
-                        </div>
-    
-                        <div class="editorial-item dining">
-                             <a href="#">
-                                <div class="editorial-image"><img src="https://marunouchi.metropolitan.jp/restaurant/list/tenqoo/menu/fujagl00000003xj-img/fujagl000000040h.jpg" alt="Dining"></div>
-                                <div class="editorial-content">
-                                    <h3><span class="lang-jp">ダイニング</span><span class="lang-en">Dining</span></h3>
-                                </div>
-                            </a>
-                        </div>
-                        
-                         <div class="editorial-item experiences">
-                             <a href="#">
-                                <div class="editorial-image"><img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=2070&auto=format&fit=crop" alt="Experiences"></div>
-                                <div class="editorial-content">
-                                     <h3><span class="lang-jp">特別な体験</span><span class="lang-en">Experiences</span></h3>
-                                </div>
-                            </a>
-                        </div>
-    
+            
+                    <div class="collage-grid">
+                        <a href="#" class="collage-item collage-item--1">
+                            <div class="collage-image-wrapper">
+                                <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?q=80&w=800" alt="Art & Architecture" loading="lazy" class="collage-image">
+                            </div>
+                            <div class="collage-content">
+                                <h4>#アートと建築</h4>
+                                <p>街全体があなたのギャラリーに</p>
+                            </div>
+                        </a>
+                        <a href="#" class="collage-item collage-item--2">
+                            <div class="collage-image-wrapper">
+                                <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?q=80&w=800" alt="Gourmet" loading="lazy" class="collage-image">
+                            </div>
+                             <div class="collage-content">
+                                <h4>#美食体験</h4>
+                                <p>あなたの味覚を満足させるすべて</p>
+                            </div>
+                        </a>
+                        <a href="#" class="collage-item collage-item--3">
+                            <div class="collage-image-wrapper">
+                                <img src="https://images.unsplash.com/photo-1555529771-835f59fc5efe?q=80&w=800" alt="Shopping" loading="lazy" class="collage-image">
+                            </div>
+                             <div class="collage-content">
+                                <h4>#ショッピング</h4>
+                                <p>最新トレンドと出会う場所</p>
+                            </div>
+                        </a>
+                        <a href="#" class="collage-item collage-item--4">
+                             <div class="collage-image-wrapper">
+                                <img src="https://prcdn.freetls.fastly.net/release_image/39557/765/39557-765-cec19e9f106416390f019093170cd164-3900x2925.jpg?format=jpeg&auto=webp&quality=85%2C65&width=1950&height=1350&fit=bounds" alt="Relaxation" loading="lazy" class="collage-image">
+                            </div>
+                             <div class="collage-content">
+                                <h4>#都心の休息</h4>
+                                <p>緑と眺望がくれる安らぎ</p>
+                            </div>
+                        </a>
                     </div>
                 </div>
             </section>
             
-            <section class="connect-section">
-                <div class="container text-center">
-                     <h2><span class="lang-jp">丸の内と、つながる</span><span class="lang-en">Connect with Marunouchi</span></h2>
-                    <div class="connect-grid">
-                        <div class="social-links">
-                            <p><span class="lang-jp">公式SNSで最新情報をチェック。あなたの体験をシェアしてください。</span><span class="lang-en">Follow our official social media for the latest updates. Share your experience with #Marunouchi.</span></p>
+            <footer class="main-footer">
+                <div class="container">
+                    <div class="footer-top">
+                        <div class="footer-social">
+                            <h4>Connect with Us</h4>
                             <div class="social-icons">
                                 <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.2,5.2 0 0,1 16.2,21.4H7.8C4.6,21.4 2,18.8 2,15.6V7.8A5.2,5.2 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z" /></svg></a>
                                 <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 2.04C6.5 2.04 2 6.53 2 12.06C2 17.06 5.66 21.21 10.44 21.96V14.96H7.9V12.06H10.44V9.85C10.44 7.32 11.93 5.96 14.22 5.96C15.31 5.96 16.45 6.15 16.45 6.15V8.62H15.19C13.95 8.62 13.56 9.39 13.56 10.18V12.06H16.34L15.89 14.96H13.56V21.96A10 10 0 0 0 12 2.04Z" /></svg></a>
                                 <a href="#" aria-label="X"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" /></svg></a>
                             </div>
                         </div>
-                         <div class="pdf-download">
-                             <p><span class="lang-jp">旅行のためのオフラインガイドが必要ですか？</span><span class="lang-en">Need an offline guide for your trip?</span></p>
-                             <a href="#" class="btn"><span class="lang-jp">無料ガイド ダウンロード (PDF)</span><span class="lang-en">Download Free Guide (PDF)</span></a>
+                        <div class="footer-guide">
+                             <p>旅行のためのオフラインガイドが必要ですか？</p>
+                             <a href="#" class="btn btn-outline">無料ガイド ダウンロード (PDF)</a>
                         </div>
                     </div>
+                    
+                    <div class="footer-divider"></div>
+            
+                    <div class="footer-main">
+                        <div class="footer-col about-col">
+                            <a href="#" class="logo">marunouchi.com</a>
+                            <p>Tokyo's Refined Urban Escape.</p>
+                        </div>
+                        <div class="footer-col">
+                            <h4>Explore</h4>
+                            <ul>
+                                <li><a href="#">Events</a></li>
+                                <li><a href="#">Area Map</a></li>
+                                <li><a href="#">Highlights</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer-col">
+                            <h4>Plan Your Day</h4>
+                            <ul>
+                                <li><a href="art.html">Art & Architecture</a></li>
+                                <li><a href="gourmet.html">Gourmet</a></li>
+                                <li><a href="shopping.html">Shopping</a></li>
+                                <li><a href="relax.html">Relaxation</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer-col">
+                            <h4>About</h4>
+                            <ul>
+                                <li><a href="#">About Marunouchi</a></li>
+                                <li><a href="#">Access</a></li>
+                                <li><a href="#">Contact</a></li>
+                            </ul>
+                        </div>
+                    </div>
+            
+                    <div class="footer-bottom">
+                        <p>&copy; 2025 marunouchi.com. All Rights Reserved.</p>
+                    </div>
                 </div>
-            </section>
-    
-        </main>
-    
-        <footer class="main-footer">
-            <div class="container">
-                <div class="footer-grid">
-                    <div class="footer-col">
-                        <h4><a href="#" class="logo">marunouchi.com</a></h4>
-                        <p>Tokyo's Refined Urban Escape.</p>
-                    </div>
-                    <div class="footer-col">
-                        <h4>Explore</h4>
-                        <ul>
-                            <li><a href="#">Events</a></li>
-                            <li><a href="#">Area Map</a></li>
-                            <li><a href="#">Highlights</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-col">
-                        <h4>Plan</h4>
-                        <ul>
-                            <li><a href="#">Shopping</a></li>
-                            <li><a href="#">Dining</a></li>
-                            <li><a href="#">Experiences</a></li>
-                            <li><a href="#">Routes</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-col">
-                        <h4>About</h4>
-                        <ul>
-                            <li><a href="#">About Marunouchi</a></li>
-                            <li><a href="#">Access</a></li>
-                            <li><a href="#">Contact</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="copyright">
-                    <p>© 2025 marunouchi.com. All Rights Reserved.</p>
-                </div>
-            </div>
-        </footer>
+            </footer>
+            <a href="#" id="back-to-top" class="back-to-top-btn" aria-label="Back to top">
+                <svg viewBox="0 0 24 24"><path fill="currentColor" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6l-6 6z"></path></svg>
+            </a>
+          
         
         <script>
             document.addEventListener('DOMContentLoaded', function () {
             
-                // -------------------------------------
-                // 1. Your Day 탭 기능
-                // -------------------------------------
-                const tabs = document.querySelectorAll('.tab-button');
-                const tabContents = document.querySelectorAll('.tab-content');
-                if (tabs.length > 0 && tabContents.length > 0) {
+                // [헬퍼 함수] 요소 존재 여부 확인
+                function elementExists(selector) {
+                    return document.querySelector(selector) !== null;
+                }
+            
+                // --------------------------------------------------------
+                // 1. Your Day 탭 기능 (접근성 aria-selected 추가)
+                // --------------------------------------------------------
+                if (elementExists('.tab-button')) {
+                    const tabs = document.querySelectorAll('.tab-button');
+                    const tabContents = document.querySelectorAll('.tab-content');
                     tabs.forEach(tab => {
                         tab.addEventListener('click', () => {
                             if (tab.classList.contains('active')) return;
-            
-                            tabs.forEach(item => item.classList.remove('active'));
+                            tabs.forEach(item => {
+                                item.classList.remove('active');
+                                item.setAttribute('aria-selected', 'false');
+                            });
                             tabContents.forEach(content => content.classList.remove('active'));
-            
                             tab.classList.add('active');
+                            tab.setAttribute('aria-selected', 'true');
                             const targetId = tab.getAttribute('data-tab');
                             const targetContent = document.getElementById(targetId);
-                            if (targetContent) {
-                                targetContent.classList.add('active');
-                            }
+                            if (targetContent) targetContent.classList.add('active');
                         });
                     });
                 }
             
-                // -------------------------------------
-                // 2. 모바일 내비게이션 (햄버거 메뉴) 기능
-                // -------------------------------------
-                const hamburgerBtn = document.getElementById('hamburger-btn');
-                const closeBtn = document.getElementById('close-btn');
-                const mobileNavOverlay = document.getElementById('mobile-nav-overlay');
-                const mobileNavLinks = document.querySelectorAll('#mobile-nav a');
+                // --------------------------------------------------------
+                // 2. 모바일 내비게이션 (햄버거 메뉴)
+                // --------------------------------------------------------
+                if (elementExists('#hamburger-btn')) {
+                    const hamburgerBtn = document.getElementById('hamburger-btn');
+                    const closeBtn = document.getElementById('close-btn');
+                    const mobileNavOverlay = document.getElementById('mobile-nav-overlay');
+                    const mobileNavLinks = document.querySelectorAll('#mobile-nav a');
             
-                if (hamburgerBtn) {
                     function openNav() { document.body.classList.add('nav-open'); }
                     function closeNav() { document.body.classList.remove('nav-open'); }
             
@@ -2049,145 +2783,118 @@ a:focus-visible, button:focus-visible, [role="tab"]:focus-visible {
                     mobileNavOverlay.addEventListener('click', (event) => {
                         if (event.target === mobileNavOverlay) closeNav();
                     });
-                    mobileNavLinks.forEach(link => {
-                        link.addEventListener('click', closeNav);
-                    });
+                    mobileNavLinks.forEach(link => link.addEventListener('click', closeNav));
                 }
             
-                // -------------------------------------
-                // 3. 스크롤 스파이 기능
-                // -------------------------------------
-                const sections = document.querySelectorAll('section[id]');
-                const navLinks = document.querySelectorAll('.side-nav a, #mobile-nav a');
-                if (sections.length > 0 && navLinks.length > 0) {
-                    window.addEventListener('scroll', () => {
-                        let current = '';
-                        sections.forEach(section => {
-                            const sectionTop = section.offsetTop;
-                            if (pageYOffset >= sectionTop - 100) { // 헤더 높이만큼 오프셋
-                                current = section.getAttribute('id');
-                            }
+                // --------------------------------------------------------
+                // 3. 페이지 인덱스(스크롤 스파이)
+                // --------------------------------------------------------
+                if (elementExists('section[id]')) {
+                    const sections = document.querySelectorAll('section[id]');
+                    const navLinks = document.querySelectorAll('.side-nav a, #mobile-nav a');
+                    if (navLinks.length > 0) {
+                        window.addEventListener('scroll', () => {
+                            let current = '';
+                            sections.forEach(section => {
+                                const sectionTop = section.offsetTop;
+                                if (pageYOffset >= sectionTop - 150) {
+                                    current = section.getAttribute('id');
+                                }
+                            });
+                            navLinks.forEach(link => {
+                                link.classList.remove('active');
+                                if (link.getAttribute('href') && link.getAttribute('href').includes(current)) {
+                                    link.classList.add('active');
+                                }
+                            });
                         });
-            
-                        navLinks.forEach(link => {
-                            link.classList.remove('active');
-                            if (link.getAttribute('href').includes(current)) {
-                                link.classList.add('active');
-                            }
-                        });
-                    });
+                    }
                 }
             
-                // =====================================
-// 4. 히어로 슬라이드 컨트롤 기능 (최종 수정본)
-// =====================================
-const heroSlides = document.querySelectorAll('.hero-slideshow .slide');
-const nextBtn = document.getElementById('next-slide');
-const prevBtn = document.getElementById('prev-slide');
-const pagerContainer = document.querySelector('.slide-pager');
-
-if (heroSlides.length > 0 && nextBtn && prevBtn && pagerContainer) {
-    let currentIndex = 0;
-    let slideInterval;
-    const pagerDots = []; // 페이저(점)들을 저장할 배열
-
-    // 슬라이드와 페이저를 특정 인덱스로 보여주는 함수
-    function showSlide(index) {
-        // 모든 슬라이드의 active 클래스 제거
-        heroSlides.forEach(slide => slide.classList.remove('active'));
-        // 선택된 인덱스의 슬라이드에만 active 클래스 추가
-        heroSlides[index].classList.add('active');
-        
-        // 모든 페이저(점)의 active 클래스 제거
-        pagerDots.forEach(dot => dot.classList.remove('active'));
-        // 선택된 인덱스의 페이저에만 active 클래스 추가
-        pagerDots[index].classList.add('active');
-        
-        currentIndex = index;
-    }
-
-    // 다음, 이전 슬라이드로 이동하는 함수
-    function nextSlide() { showSlide((currentIndex + 1) % heroSlides.length); }
-    function prevSlide() { showSlide((currentIndex - 1 + heroSlides.length) % heroSlides.length); }
-
-    // 자동 슬라이드 쇼를 시작하고 리셋하는 함수
-    function startSlideShow() {
-        stopSlideShow();
-        slideInterval = setInterval(nextSlide, 6000);
-    }
-    function stopSlideShow() { clearInterval(slideInterval); }
-
-    // 화살표 버튼 클릭 이벤트
-    nextBtn.addEventListener('click', () => { nextSlide(); startSlideShow(); });
-    prevBtn.addEventListener('click', () => { prevSlide(); startSlideShow(); });
-    
-    // 페이저(점) 생성 및 클릭 이벤트
-    heroSlides.forEach((_, i) => {
-        const dot = document.createElement('div');
-        dot.classList.add('pager-dot');
-        dot.addEventListener('click', () => {
-            showSlide(i); // 해당 인덱스의 슬라이드로 바로 이동
-            startSlideShow();
-        });
-        pagerContainer.appendChild(dot);
-        pagerDots.push(dot); // 배열에 추가
-    });
-
-    // 초기화
-    showSlide(0);
-    startSlideShow();
-}
-                
-                // -------------------------------------
-                // 5. 이벤트 카운트다운 기능 (수정됨)
-                // -------------------------------------
-                const countdownElements = document.querySelectorAll('.event-countdown');
-                if (countdownElements.length > 0) {
-                    const today = new Date();
-                    today.setHours(0, 0, 0, 0);
+                // --------------------------------------------------------
+                // 4. 히어로(메인) 슬라이드 쇼
+                // --------------------------------------------------------
+                if (elementExists('.hero-slideshow')) {
+                    const heroSlides = document.querySelectorAll('.hero-slideshow .slide');
+                    const nextBtn = document.getElementById('next-slide');
+                    const prevBtn = document.getElementById('prev-slide');
+                    const pagerContainer = document.querySelector('.slide-pager');
+                    if (heroSlides.length > 0 && nextBtn && prevBtn && pagerContainer) {
+                        let currentIndex = 0;
+                        let slideInterval;
+                        const pagerDots = [];
+                        function showSlide(index) {
+                            heroSlides.forEach((slide, i) => slide.classList.toggle('active', i === index));
+                            pagerDots.forEach((dot, i) => dot.classList.toggle('active', i === index));
+                            currentIndex = index;
+                        }
+                        function nextSlide() { showSlide((currentIndex + 1) % heroSlides.length); }
+                        function prevSlide() { showSlide((currentIndex - 1 + heroSlides.length) % heroSlides.length); }
+                        function startSlideShow() {
+                            stopSlideShow();
+                            slideInterval = setInterval(nextSlide, 7500);
+                        }
+                        function stopSlideShow() { clearInterval(slideInterval); }
+                        nextBtn.addEventListener('click', () => { nextSlide(); startSlideShow(); });
+                        prevBtn.addEventListener('click', () => { prevSlide(); startSlideShow(); });
+                        heroSlides.forEach((_, i) => {
+                            const dot = document.createElement('div');
+                            dot.classList.add('pager-dot');
+                            dot.addEventListener('click', () => { showSlide(i); startSlideShow(); });
+                            pagerContainer.appendChild(dot);
+                            pagerDots.push(dot);
+                        });
+                        showSlide(0);
+                        startSlideShow();
+                    }
+                }
             
+                // --------------------------------------------------------
+                // 5. 카드 슬라이더 (아이코닉/추천 카드 슬라이더)
+                // --------------------------------------------------------
+                if (elementExists('#recommended-slider')) {
+                    const slider = document.getElementById('recommended-slider');
+                    const prevBtn = slider.nextElementSibling?.querySelector('.prev');
+                    const nextBtn = slider.nextElementSibling?.querySelector('.next');
+                    if (prevBtn && nextBtn) {
+                        nextBtn.addEventListener('click', () => slider.scrollBy({ left: slider.offsetWidth * 0.8, behavior: 'smooth' }));
+                        prevBtn.addEventListener('click', () => slider.scrollBy({ left: -slider.offsetWidth * 0.8, behavior: 'smooth' }));
+                    }
+                }
+            
+                // --------------------------------------------------------
+                // 6. D-DAY 카운트다운 (이벤트)
+                // --------------------------------------------------------
+                if (elementExists('.event-countdown')) {
+                    const countdownElements = document.querySelectorAll('.event-countdown');
                     countdownElements.forEach(el => {
                         const startDateString = el.getAttribute('data-start-date');
-                        const endDateString = el.getAttribute('data-end-date');
-                        if (!startDateString) return;
-            
+                        if (!startDateString) {
+                            el.style.display = 'none';
+                            return;
+                        }
+                        const today = new Date();
                         const startDate = new Date(startDateString);
+                        today.setHours(0, 0, 0, 0);
                         startDate.setHours(0, 0, 0, 0);
-                        
-                        if (endDateString) {
-                            const endDate = new Date(endDateString);
-                            endDate.setHours(0, 0, 0, 0);
-                            if (today.getTime() > endDate.getTime()) {
-                                el.classList.add('finished');
-                                el.innerHTML = `<strong>終了</strong>`;
-                            } else if (today.getTime() >= startDate.getTime()) {
-                                el.classList.add('ongoing');
-                                el.innerHTML = `<strong>開催中</strong>`;
-                            } else {
-                                const daysLeft = Math.ceil((startDate.getTime() - today.getTime()) / (1000 * 3600 * 24));
-                                el.innerHTML = `<strong>D-${daysLeft}</strong>`;
-                            }
-                        } else { // 하루짜리 이벤트
-                            if (today.getTime() > startDate.getTime()) {
-                                el.classList.add('finished');
-                                el.innerHTML = `<strong>終了</strong>`;
-                            } else if (today.getTime() === startDate.getTime()) {
-                                el.classList.add('ongoing');
-                                el.innerHTML = `<strong>D-DAY</strong>`;
-                            } else {
-                                const daysLeft = Math.ceil((startDate.getTime() - today.getTime()) / (1000 * 3600 * 24));
-                                el.innerHTML = `<strong>D-${daysLeft}</strong>`;
-                            }
+                        const timeDiff = startDate.getTime() - today.getTime();
+                        const daysLeft = Math.ceil(timeDiff / (1000 * 3600 * 24));
+                        if (daysLeft > 0) {
+                            el.innerHTML = `<strong>D-${daysLeft}</strong>`;
+                        } else if (daysLeft === 0) {
+                            el.innerHTML = `<strong>D-DAY</strong>`;
+                        } else {
+                            el.style.display = 'none';
                         }
                     });
                 }
             
-                // -------------------------------------
-                // 6. 이벤트 카드 스크롤 애니메이션
-                // -------------------------------------
-                const animatedCards = document.querySelectorAll('.event-card-v3');
-                if (animatedCards.length > 0) {
-                    const observer = new IntersectionObserver((entries, observer) => {
+                // --------------------------------------------------------
+                // 7. 이벤트 카드 스크롤 애니메이션
+                // --------------------------------------------------------
+                if (elementExists('.event-card-v3')) {
+                    const animatedCards = document.querySelectorAll('.event-card-v3');
+                    const observer = new IntersectionObserver((entries) => {
                         entries.forEach(entry => {
                             if (entry.isIntersecting) {
                                 entry.target.classList.add('is-visible');
@@ -2195,18 +2902,64 @@ if (heroSlides.length > 0 && nextBtn && prevBtn && pagerContainer) {
                             }
                         });
                     }, { threshold: 0.1 });
-            
                     animatedCards.forEach((card, index) => {
                         card.style.animationDelay = `${index * 150}ms`;
                         observer.observe(card);
                     });
                 }
-                
-                // -------------------------------------
-                // 7. '맨 위로 가기' 버튼 기능
-                // -------------------------------------
-                const toTopBtn = document.getElementById('back-to-top');
-                if(toTopBtn) {
+            
+                // --------------------------------------------------------
+                // 8. 지도-툴팁 연동 기능
+                // --------------------------------------------------------
+                if (elementExists('.map-hotspot.interactive') && elementExists('#map-tooltip')) {
+                    const hotspots = document.querySelectorAll('.map-hotspot.interactive');
+                    const tooltip = document.getElementById('map-tooltip');
+                    hotspots.forEach(hotspot => {
+                        hotspot.addEventListener('mouseenter', (e) => {
+                            const targetId = hotspot.dataset.targetCard;
+                            const targetCard = document.querySelector(`.info-card[data-card-id="${targetId}"]`);
+                            if (!targetCard) return;
+                            tooltip.innerHTML = targetCard.innerHTML;
+                            tooltip.style.left = `${e.pageX + 20}px`;
+                            tooltip.style.top = `${e.pageY + 20}px`;
+                            tooltip.classList.add('visible');
+                        });
+                        hotspot.addEventListener('mouseleave', () => {
+                            tooltip.classList.remove('visible');
+                        });
+                        hotspot.addEventListener('mousemove', (e) => {
+                            tooltip.style.left = `${e.pageX + 20}px`;
+                            tooltip.style.top = `${e.pageY + 20}px`;
+                        });
+                    });
+                }
+            
+                // --------------------------------------------------------
+                // 9. 콜라주 패럴랙스 효과
+                // --------------------------------------------------------
+                if (elementExists('.collage-item')) {
+                    const collageItems = document.querySelectorAll('.collage-item');
+                    const handleParallaxScroll = () => {
+                        const windowHeight = window.innerHeight;
+                        collageItems.forEach(item => {
+                            const imageWrapper = item.querySelector('.collage-image-wrapper');
+                            if (!imageWrapper) return;
+                            const rect = item.getBoundingClientRect();
+                            if (rect.top < windowHeight && rect.bottom > 0) {
+                                const speed = -0.1;
+                                const yPos = rect.top * speed;
+                                imageWrapper.style.transform = `translateY(${yPos}px)`;
+                            }
+                        });
+                    };
+                    window.addEventListener('scroll', handleParallaxScroll);
+                }
+            
+                // --------------------------------------------------------
+                // 10. '맨 위로 가기' 버튼
+                // --------------------------------------------------------
+                if (elementExists('#back-to-top')) {
+                    const toTopBtn = document.getElementById('back-to-top');
                     window.addEventListener('scroll', () => {
                         if (window.pageYOffset > 300) {
                             toTopBtn.classList.add('visible');
@@ -2214,11 +2967,12 @@ if (heroSlides.length > 0 && nextBtn && prevBtn && pagerContainer) {
                             toTopBtn.classList.remove('visible');
                         }
                     });
+                    toTopBtn.addEventListener('click', () => {
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    });
                 }
             
             });
             </script>
-    <a href="#" id="back-to-top" class="back-to-top-btn" aria-label="Back to top">
-        <svg viewBox="0 0 24 24"><path fill="currentColor" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6l-6 6z"></path></svg>
-    </a>
-    </body>
+              </body>
+            
