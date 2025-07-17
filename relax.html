@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -7,173 +6,394 @@
     
     <title>丸の内で過ごす休息の時間 | Marunouchi.com</title>
     <meta name="description" content="都会の喧騒を忘れさせる、安らぎの空間へ。美しい庭園、静かなカフェ、緑豊かな遊歩道。丸の内で、心と体をリフレッシュする穏やかな時間をお過ごしください。">
-    <meta name="keywords" content="丸の内 休息, 皇居, 庭園, 丸の内 カフェ, リラックス, Marunouchi Relax, Garden">
+    <meta name="keywords" content="丸の内 休息, 皇居, 庭園, 丸の内 カフェ, リラックス, ランニング, ルーフトップ, ウェディングフォト, Marunouchi Relax">
 
     <meta property="og:title" content="丸の内で過ごす休息の時間 | Marunouchi.com">
-    <meta property="og:description" content="緑と眺望がくれる、都心の安らぎ。">
-    <meta property="og:image" content="https://www.marunouchi.com/assets/img/area/spot4/img_theme02_01.jpg">
+    <meta property="og:description" content="緑と眺望がくれる、都心の安らぎ。丸の内で心と体をリフレッシュする穏やかな時間。">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1583930248511-96857f427713?q=80&w=2070&auto=format&fit=crop">
     <meta property="og:url" content="https://www.your-website-url.com/relax.html">
     <meta property="og:type" content="website">
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="丸の内で過ごす休息の時間 | Marunouchi.com">
     <meta name="twitter:description" content="緑と眺望がくれる、都心の安らぎ。">
-    <meta name="twitter:image" content="https://www.marunouchi.com/assets/img/area/spot4/img_theme02_01.jpg">
+    <meta name="twitter:image" content="https://images.unsplash.com/photo-1583930248511-96857f427713?q=80&w=2070&auto=format&fit=crop">
 
     <link rel="icon" href="https://www.marunouchi.com/favicon.ico">
     <link rel="apple-touch-icon" href="https://www.marunouchi.com/apple-touch-icon.png">
 
 <style>
-    /* (이하 전체 스타일 코드) */
+    /* 전체 CSS 코드 */
     @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Noto+Sans+JP:wght@400;700&display=swap');
-    :root{--font-serif:'Playfair Display',serif;--font-sans:'Noto Sans JP',sans-serif;--color-main:#004040;--color-accent:#8c6d46;--color-text:#333333;--color-bg:#FFFFFF;--color-light-bg:#f9f9f9;}
-    *{margin:0;padding:0;box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{font-family:var(--font-sans);background-color:var(--color-bg);color:var(--color-text);font-size:17px;line-height:1.8;-webkit-font-smoothing:antialiased}
-    .container{max-width:1100px;margin:0 auto;padding:0 20px}
-    a{text-decoration:none;color:var(--color-accent);transition:all .3s ease}
-    .btn{display:inline-block;padding:12px 30px;background-color:var(--color-main);color:#fff;font-weight:700;border-radius:4px;transition:all .4s ease}
-    .btn:hover{background-color:var(--color-accent);transform:translateY(-3px);box-shadow:0 10px 20px rgba(0,0,0,.15);}
-    .main-header{padding:20px 0;background-color:rgba(255,255,255,.95);backdrop-filter:blur(10px);border-bottom:1px solid #eaeaea;position:sticky;top:0;z-index:1000}
-    .header-container{display:flex;justify-content:space-between;align-items:center}
-    .logo{font-family:var(--font-serif);font-size:2.2rem;color:var(--color-main)}
-    .main-nav a{color:var(--color-main);margin:0 20px;font-weight:700}
-    .content-section{padding:120px 0}
-    .section-header{text-align:center;margin-bottom:70px}
-    .section-header h2{font-size:2.8rem;color:var(--color-main);}
-    .section-header p{font-size:1.1rem;max-width:700px;margin:20px auto 0;color:#555}
-    .main-footer{padding:60px 0;background-color:#222;color:#aaa}
-    .copyright{text-align:center;padding-top:40px;margin-top:40px;border-top:1px solid #444}
-    .back-to-top-btn{position:fixed;bottom:30px;right:30px;width:50px;height:50px;background-color:var(--color-main);color:#fff;border-radius:50%;text-align:center;line-height:50px;box-shadow:0 4px 10px rgba(0,0,0,0.2);z-index:500;opacity:0;visibility:hidden;transform:translateY(20px);transition:all .4s ease}
-    .back-to-top-btn.visible{opacity:1;visibility:visible;transform:translateY(0)}
-    .back-to-top-btn svg{width:30px;height:30px;vertical-align:middle}
     
-    /* === 休息ページ専用スタイル === */
-    .relax-hero {
-        padding: 120px 0;
-        text-align: center;
-        background-color: #f4f8f4; /* 落ち着いた緑がかった背景 */
+    :root {
+        --font-serif:'Playfair Display', serif;
+        --font-sans:'Noto Sans JP', sans-serif;
+        --color-main:#3c5246; /* 차분한 녹색 계열 */
+        --color-accent:#bca986; /* 우아한 골드 계열 */
+        --color-text:#333333;
+        --color-bg:#FFFFFF;
+        --color-light-bg:#f7f9f7;
     }
-    .relax-hero h1 {
-        font-family: var(--font-serif);
-        font-size: 3.2rem;
-        color: var(--color-main);
-        font-weight: 700;
-        margin-bottom: 15px;
-    }
-    .relax-hero p {
-        font-size: 1.2rem;
-        color: var(--color-text);
-        opacity: 0.8;
-    }
-    .spot-card {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 60px;
-        align-items: center;
-        margin-bottom: 100px;
-    }
-    .spot-card:nth-child(even) .spot-image {
-        grid-column: 2;
-        grid-row: 1;
-    }
-    .spot-card:nth-child(even) .spot-text {
-        grid-column: 1;
-        grid-row: 1;
-    }
-    .spot-image img {
-        width: 100%;
-        height: 400px;
-        object-fit: cover;
-        border-radius: 8px;
-    }
-    .spot-text h3 {
-        font-family: var(--font-serif);
-        font-size: 2.2rem;
-        color: var(--color-main);
-        margin-bottom: 20px;
-    }
-    .spot-text .location-tag {
-        font-weight: 700;
-        color: var(--color-accent);
-        margin-bottom: 20px;
-        display: block;
-    }
-    .spot-text p {
-        line-height: 2;
-    }
+    
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { font-family:var(--font-sans); background-color:var(--color-bg); color:var(--color-text); font-size:17px; line-height:1.8; -webkit-font-smoothing:antialiased; }
+    .container { max-width:1100px; margin:0 auto; padding:0 20px; }
+    a { text-decoration:none; color:var(--color-accent); transition:all .3s ease; }
+    
+    /* 헤더 */
+    .main-header { padding:15px 0; background-color:rgba(255,255,255,.98); backdrop-filter:blur(10px); border-bottom:1px solid #eaeaea; position:sticky; top:0; z-index:1000; }
+    .header-container { display:flex; justify-content:space-between; align-items:center; }
+    .logo { font-family:var(--font-serif); font-size:2.2rem; color:var(--color-main); margin-right: 20px; }
+    .main-nav { display: flex; align-items: center; gap: 25px; }
+    .main-nav a { color:var(--color-text); font-weight:700; font-size: 1rem; position: relative; padding: 5px 0; }
+    .main-nav a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: var(--color-accent); transition: width .3s; }
+    .main-nav a:hover::after, .main-nav a.active::after { width: 100%; }
+    .header-right { display: flex; align-items: center; gap: 20px; }
+    .lang-switcher, .search-icon { font-size: 0.9rem; font-weight: 700; cursor: pointer; }
+    .lang-switcher select { border: none; background: transparent; font-weight: 700; font-family: inherit; font-size: inherit; }
+    .search-icon svg { width: 22px; height: 22px; vertical-align: middle; }
+
+    /* 공통 섹션 */
+    .content-section { padding: 120px 0; }
+    .section-header { text-align:center; margin-bottom:70px; }
+    .section-header h2 { font-family: var(--font-serif); font-size:2.8rem; color:var(--color-main); }
+    .section-header p { font-size:1.1rem; max-width:700px; margin:20px auto 0; color:#555; }
+    .section-header .tag { display: inline-block; color: var(--color-accent); font-weight: 700; margin-bottom: 10px; }
+
+    /* 히어로 */
+    .relax-hero { padding: 120px 0; text-align: center; background: url('https://images.unsplash.com/photo-1583930248511-96857f427713?q=80&w=2070&auto=format&fit=crop') no-repeat center center; background-size: cover; color: #fff; }
+    .relax-hero .overlay { background: rgba(0,0,0,0.3); padding: 80px 20px; border-radius: 8px; display: inline-block; }
+    .relax-hero h1 { font-family:var(--font-serif); font-size: 3.5rem; font-weight: 700; margin-bottom: 15px; text-shadow: 0 2px 5px rgba(0,0,0,0.5); }
+    .relax-hero p { font-size: 1.2rem; opacity: 0.9; text-shadow: 0 1px 3px rgba(0,0,0,0.5); }
+
+    /* 특집 소개 허브 */
+    .feature-hub-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+    .feature-hub-card { border-radius: 8px; overflow: hidden; position: relative; color: #fff; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+    .feature-hub-card img { width: 100%; height: 450px; object-fit: cover; display: block; transition: transform .4s ease; }
+    .feature-hub-card:hover img { transform: scale(1.05); }
+    .feature-hub-card .content { position: absolute; bottom: 0; left: 0; width: 100%; padding: 30px; background: linear-gradient(to top, rgba(0,0,0,0.8), transparent); }
+    .feature-hub-card .tag { display: block; margin-bottom: 5px; font-weight: bold; font-size: 0.9rem; }
+    .feature-hub-card h3 { font-family: var(--font-serif); font-size: 1.8rem; margin-bottom: 10px; }
+    
+    /* 각 특집 섹션 스타일 */
+    .feature-section { background-color: var(--color-light-bg); }
+    .feature-section.white-bg { background-color: #fff; }
+    .feature-item { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; margin-bottom: 80px; }
+    .feature-item:last-child { margin-bottom: 0; }
+    .feature-item.reversed .image { grid-column: 2; }
+    .feature-item.reversed .text { grid-column: 1; }
+    .feature-item .image img { width: 100%; border-radius: 8px; aspect-ratio: 4/3; object-fit: cover; }
+    .feature-item .text h4 { font-size: 1.8rem; margin-bottom: 15px; color: var(--color-main); font-family: var(--font-serif); }
+    .feature-item .text .desc { margin-bottom: 20px; }
+    
+    /* 러너 스테이션 카드 */
+    .runner-stations { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 30px; }
+    .station-card { background: #fff; padding: 25px; border: 1px solid #eee; border-radius: 5px; }
+    .station-card h5 { font-size: 1.2rem; color: var(--color-main); }
+    .station-card p { font-size: 0.9rem; }
+
+    /* 인터랙티브 맵 */
+    .map-section { background: var(--color-light-bg); }
+    .map-container { display: grid; grid-template-columns: 2fr 1fr; gap: 30px; }
+    #map { height: 550px; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+    #facility-list { list-style: none; padding: 0; margin: 0; max-height: 550px; overflow-y: auto; }
+    #facility-list li { padding: 15px 20px; background: #fff; border: 1px solid #eee; border-radius: 5px; margin-bottom: 10px; cursor: pointer; transition: all .3s ease; }
+    #facility-list li:hover { background: var(--color-accent); color: #fff; transform: translateX(5px); }
+    #facility-list li h5 { margin-bottom: 5px; font-size: 1.1rem; }
+    #facility-list li p { font-size: 0.85rem; color: #777; line-height: 1.5; }
+    #facility-list li:hover p { color: #fff; }
+
+    /* 푸터 및 기타 */
+    .main-footer { padding:60px 0; background-color:#222; color:#aaa; }
+    .footer-grid { display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:40px; }
+    .footer-grid h4 { color:#fff; font-size:1rem; margin-bottom:15px; }
+    .footer-grid ul { list-style:none; padding:0; }
+    .footer-grid a { color:#aaa; }
+    .copyright { text-align:center; padding-top:40px; margin-top:40px; border-top:1px solid #444; }
+    .back-to-top-btn { position:fixed; bottom:30px; right:30px; width:50px; height:50px; background-color:var(--color-main); color:#fff; border-radius:50%; text-align:center; line-height:50px; box-shadow:0 4px 10px rgba(0,0,0,0.2); z-index:500; opacity:0; visibility:hidden; transform:translateY(20px); transition:all .4s ease; }
+    .back-to-top-btn.visible { opacity:1; visibility:visible; transform:translateY(0); }
+    .back-to-top-btn svg { width:30px; height:30px; vertical-align:middle; }
+    @media (max-width: 900px) { .map-container, .feature-hub-grid { grid-template-columns: 1fr; } .feature-item { grid-template-columns: 1fr; } .feature-item.reversed .image { grid-column: 1; } }
+
 </style>
 </head>
 <body>
     <header class="main-header">
         <div class="header-container container">
-            <a href="index.html" class="logo">marunouchi.com</a>
-            <div class="header-right">
+            <div style="display: flex; align-items: center;">
+                <a href="index.html" class="logo">marunouchi.com</a>
                 <nav class="main-nav">
-                    <a href="art.html">Art & Architecture</a>
-                    <a href="gourmet.html">Gourmet</a>
                     <a href="shopping.html">Shopping</a>
+                    <a href="gourmet.html">Gourmet</a>
+                    <a href="events.html">Events</a>
+                    <a href="relax.html" class="active">Relaxation</a>
                 </nav>
+            </div>
+            <div class="header-right">
+                <div class="search-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#333333"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+                </div>
+                <div class="lang-switcher">
+                    <select name="lang">
+                        <option value="ja">JP</option>
+                        <option value="en">EN</option>
+                        <option value="ko">KR</option>
+                    </select>
+                </div>
             </div>
         </div>
     </header>
 
     <main>
         <section class="relax-hero">
-            <div class="container">
-                <h1>心安らぐ、都心のオアシス</h1>
-                <p>忙しい日常から少し離れて、深呼吸しませんか。</p>
+            <div class="overlay">
+                <h1>心安らぐ、都心のオアシスへ</h1>
+                <p>A MOMENT OF SERENITY IN THE CITY</p>
             </div>
         </section>
 
         <section class="content-section">
             <div class="container">
-                <div class="spot-card">
-                    <div class="spot-image">
-                        <img src="https://visit-chiyoda.tokyo/app/upload/images/higashi_gyoen_c1.jpg" alt="皇居東御苑">
-                    </div>
-                    <div class="spot-text">
-                        <span class="location-tag">GARDEN & HISTORY</span>
-                        <h3>皇居東御苑</h3>
-                        <p>かつて江戸城の中心部であった場所が、今は美しい庭園として一般に公開されています。広大な芝生、歴史的な遺構、そして季節ごとに咲き誇る花々。都会の中心にいることを忘れさせるほどの、静寂と自然に満ちた空間です。</p>
-                        <a href="https://www.kunaicho.go.jp/event/higashigyoen/higashigyoen.html" class="btn" target="_blank" rel="noopener">詳細を見る</a>
-                    </div>
+                <div class="section-header">
+                    <h2>MARUNOUCHI RELAXATION THEMES</h2>
+                    <p>丸の内には、あなたの気分や目的に合わせた様々な休息の形があります。<br>お好みのテーマを選んで、あなただけの特別な時間を見つけてください。</p>
                 </div>
-
-                <div class="spot-card">
-                    <div class="spot-image">
-                        <img src="https://marunouchi.g.kuroco-img.app/v=1705296909/files/user/media/pickup/1911/lp_img03.jpg" alt="丸の内ブリックスクエア">
-                    </div>
-                    <div class="spot-text">
-                        <span class="location-tag">SQUARE & CAFE</span>
-                        <h3>丸の内ブリックスクエア</h3>
-                        <p>三菱一号館美術館を囲むように広がる、緑豊かな中庭。バラが咲く季節は特に美しく、多くの人々がベンチに座って読書をしたり、カフェのテラスで談笑したりしています。ショッピングの合間に立ち寄って、ほっと一息つくのに最適な場所です。</p>
-                    </div>
+                <div class="feature-hub-grid">
+                    <a href="#running" class="feature-hub-card">
+                        <img src="https://images.unsplash.com/photo-1542729230-85575b558557?q=80&w=1974&auto=format&fit=crop" alt="Running">
+                        <div class="content">
+                            <span class="tag">ACTIVE RELAX</span>
+                            <h3>皇居ランナーズ・サポート</h3>
+                        </div>
+                    </a>
+                    <a href="#rooftops" class="feature-hub-card">
+                        <img src="https://images.unsplash.com/photo-1628045353521-79717753332b?q=80&w=1964&auto=format&fit=crop" alt="Rooftop">
+                        <div class="content">
+                            <span class="tag">SKY VIEW</span>
+                            <h3>天空のパノラマ・ルーフトップ</h3>
+                        </div>
+                    </a>
+                    <a href="#photos" class="feature-hub-card">
+                        <img src="https://images.unsplash.com/photo-1511285560921-50b36552e14a?q=80&w=1974&auto=format&fit=crop" alt="Wedding">
+                        <div class="content">
+                            <span class="tag">SPECIAL DAY</span>
+                            <h3>ウェディングフォトスポット</h3>
+                        </div>
+                    </a>
                 </div>
-
-                <div class="spot-card">
-                    <div class="spot-image">
-                        <img src="https://marunouchi.jp-kitte.jp/cmsdata/static/fig_facility-garden02.jpg" alt="KITTEガーデン">
+            </div>
+        </section>
+        
+        <section id="running" class="feature-section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="tag">ACTIVE RELAX</span>
+                    <h2>皇居ランナーズ・サポート特集</h2>
+                    <p>東京のビジネスの中心地は、国内随一のランニングの聖地でもあります。手ぶらで訪れてもランニングを楽しめる充実のサポート施設と、走った後のご褒美までご紹介します。</p>
+                </div>
+                <div class="feature-item">
+                    <div class="image">
+                        <img src="https://live.staticflickr.com/65535/51351111753_19326e7a2b_b.jpg" alt="皇居ランニング">
                     </div>
-                    <div class="spot-text">
-                        <span class="location-tag">ROOFTOP & VIEW</span>
-                        <h3>KITTEガーデン</h3>
-                        <p>JPタワーの屋上にある、緑豊かな展望庭園。ウッドデッキが敷かれた開放的な空間からは、目の前に広がる東京駅のパノラマビューを心ゆくまで楽しめます。都会の真ん中で風を感じながら過ごす時間は、何よりの贅沢です。</p>
+                    <div class="text">
+                        <h4>都心の緑を駆け抜ける、至福の時間</h4>
+                        <p class="desc">信号のない、一周約5kmの快適なコース。美しい堀と緑、そして近代的なビル群のコントラストは、ここでしか味わえない特別な景色です。季節の移ろいを感じながら、心と体をリフレッシュしましょう。</p>
+                        <div class="runner-stations">
+                            <div class="station-card">
+                                <h5>Raffine Running Style</h5>
+                                <p>ロッカー、シャワー、ウェアやシューズのレンタルも完備。仕事帰りに気軽に立ち寄れるランナーの心強い味方です。</p>
+                            </div>
+                            <div class="station-card">
+                                <h5>Adidas RUNBASE</h5>
+                                <p>最新のアディダス製品を試せるだけでなく、ランニングクリニックなどのイベントも開催される情報発信基地。</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
-    </main>
 
+        <section id="rooftops" class="feature-section white-bg">
+            <div class="container">
+                <div class="section-header">
+                    <span class="tag">SKY VIEW</span>
+                    <h2>天空のパノラマ・ルーフトップ特集</h2>
+                    <p>都会の喧騒から離れ、空と緑と風を感じる。丸の内には、息をのむような景色が広がる秘密の屋上庭園があります。昼の解放感も、夜の煌めきも、どちらも格別です。</p>
+                </div>
+                <div class="feature-item reversed">
+                    <div class="image">
+                        <img src="https://marunouchi.jp-kitte.jp/cmsdata/static/fig_facility-garden02.jpg" alt="KITTEガーデン">
+                    </div>
+                    <div class="text">
+                        <h4>KITTEガーデン</h4>
+                        <p class="desc">復原された東京駅丸の内駅舎を一望できる、最高のビュースポット。ウッドデッキに座り、ひっきりなしに行き交う電車を眺めるだけでも特別な時間。入場無料で誰でも気軽に立ち寄れます。</p>
+                    </div>
+                </div>
+                 <div class="feature-item">
+                    <div class="image">
+                        <img src="https://marunouchi-house.com/wp-content/themes/marunouchi-house/assets/images/about/img_about_main.jpg" alt="丸の内ハウス">
+                    </div>
+                    <div class="text">
+                        <h4>丸の内ハウス (新丸ビル7F)</h4>
+                        <p class="desc">夜景を楽しみながらお酒や食事ができる、大人のためのテラス。複数のレストランやバーがフロアを共有しており、様々な料理をテラスに持ち寄って楽しむことも可能。開放的な雰囲気で、夜風が心地よい空間です。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="photos" class="feature-section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="tag">SPECIAL DAY</span>
+                    <h2>ウェディングフォトスポット特集</h2>
+                    <p>クラシックな建築とモダンな街並みが融合する丸の内は、お二人の特別な日を写真に収めるのに最高のロケーションです。映画のワンシーンのような、忘れられない一枚を。</p>
+                </div>
+                <div class="feature-item">
+                    <div class="image">
+                        <img src="https://files.graphy.tokyo/photograph/upload/2019/12/fbc3d332-9a00-4b21-b3b0-58992c10c1f5.jpg" alt="丸の内仲通りでのウェディングフォト">
+                    </div>
+                    <div class="text">
+                        <h4>丸の内仲通り</h4>
+                        <p class="desc">ブランドショップが並ぶ、石畳の美しいストリート。夏は新緑、冬はシャンパンゴールドのイルミネーションが、お二人をロマンチックに彩ります。まるでヨーロッパの街角のような、洗練された写真を撮ることができます。</p>
+                    </div>
+                </div>
+                <div class="feature-item reversed">
+                    <div class="image">
+                        <img src="https://www.happo-en.com/banquet/wp-content/uploads/2021/02/7D2A0937-2.jpg" alt="三菱一号館美術館前でのウェディングフォト">
+                    </div>
+                    <div class="text">
+                        <h4>三菱一号館美術館 & ブリックスクエア</h4>
+                        <p class="desc">赤レンガのクラシカルな美術館と、緑豊かな中庭は最高の撮影スポット。ノスタルジックで温かみのある雰囲気は、ウェディングドレスとの相性も抜群。どこを切り取っても絵になる空間です。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section map-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Marunouchi Oasis Map</h2>
+                    <p>地図で安らぎのスポットを探しましょう。リストをクリックすると地図が移動します。</p>
+                </div>
+                <div class="map-container">
+                    <div id="map"></div>
+                    <ul id="facility-list">
+                        </ul>
+                </div>
+            </div>
+        </section>
+
+    </main>
+    
     <footer class="main-footer">
-      <div class="container">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col"><h4><a href="index.html" class="logo">marunouchi.com</a></h4></div>
+                <div class="footer-col">
+                    <h4>Explore</h4>
+                    <ul>
+                        <li><a href="art.html">Art & Architecture</a></li>
+                        <li><a href="gourmet.html">Gourmet</a></li>
+                        <li><a href="shopping.html">Shopping</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Plan</h4>
+                    <ul>
+                        <li><a href="events.html">Events</a></li>
+                        <li><a href="access.html">Access & Map</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>About</h4>
+                    <ul>
+                        <li><a href="#">About Marunouchi</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright"><p>© 2025 marunouchi.com. All Rights Reserved.</p></div>
         </div>
     </footer>
+
     <a href="#" id="back-to-top" class="back-to-top-btn" aria-label="Back to top">
-      <svg viewBox="0 0 24 24"><path fill="currentColor" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6l-6 6z"></path></svg>
+        <svg viewBox="0 0 24 24"><path fill="currentColor" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6l-6 6z"></path></svg>
     </a>
+
     <script>
-      // (スクリプト内容は省略)
+    const locations = [
+        { name: '皇居東御苑', type: 'Garden', lat: 35.6865, lng: 139.756, desc: '江戸城跡の歴史と自然が調和する広大な庭園。' },
+        { name: 'KITTEガーデン', type: 'Rooftop', lat: 35.6798, lng: 139.7654, desc: '東京駅を一望する無料の屋上展望デッキ。' },
+        { name: '丸の内ハウス テラス', type: 'Rooftop', lat: 35.6821, lng: 139.7650, desc: '新丸ビル7階。夜景が美しい大人のための空間。' },
+        { name: '丸の内ブリックスクエア', type: 'Garden', lat: 35.6781, lng: 139.7634, desc: '美術館を囲む、バラと緑が美しい中庭。' },
+        { name: '和田倉噴水公園', type: 'Garden', lat: 35.6844, lng: 139.7594, desc: '皇居外苑に位置する、開放的な噴水公園。' },
+        { name: 'Raffine Running Style Neo', type: 'Running', lat: 35.6775, lng: 139.7618, desc: '日比谷にある、手ぶらで利用可能なランナーズステーション。' },
+        { name: '行幸通り', type: 'Photo Spot', lat: 35.6820, lng: 139.7617, desc: '東京駅と皇居を結ぶ、ウェディングフォトの定番スポット。' }
+    ];
+
+    let map;
+    let markers = [];
+    let infoWindow;
+
+    function initMap() {
+        const mapOptions = {
+            center: { lat: 35.682, lng: 139.763 },
+            zoom: 15,
+            mapTypeControl: false,
+            streetViewControl: false,
+            styles: [
+                { featureType: "poi.business", stylers: [{ visibility: "off" }] },
+                { featureType: "transit", elementType: "labels.icon", stylers: [{ visibility: "off" }] }
+            ]
+        };
+
+        map = new google.maps.Map(document.getElementById('map'), mapOptions);
+        infoWindow = new google.maps.InfoWindow();
+        const facilityList = document.getElementById('facility-list');
+        facilityList.innerHTML = ''; // 리스트 초기화
+
+        locations.forEach((location) => {
+            const marker = new google.maps.Marker({
+                position: { lat: location.lat, lng: location.lng },
+                map: map,
+                title: location.name
+            });
+            markers.push(marker);
+
+            marker.addListener('click', () => {
+                map.panTo(marker.getPosition());
+                infoWindow.setContent(`<div style="font-weight: bold;">${location.name}</div><div style="font-size: 0.9em; color: #555;">${location.desc}</div>`);
+                infoWindow.open(map, marker);
+            });
+
+            const listItem = document.createElement('li');
+            listItem.innerHTML = `<h5>${location.name} <small style="color:var(--color-accent); font-size:0.8em; margin-left:5px;">(${location.type})</small></h5><p>${location.desc}</p>`;
+            facilityList.appendChild(listItem);
+
+            listItem.addEventListener('click', () => {
+                map.panTo(marker.getPosition());
+                google.maps.event.trigger(marker, 'click');
+            });
+        });
+    }
+
+    // Back to top button script
+    document.addEventListener('DOMContentLoaded', function () {
+        if (document.getElementById('back-to-top')) {
+            const toTopBtn = document.getElementById('back-to-top');
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 300) { toTopBtn.classList.add('visible'); } 
+                else { toTopBtn.classList.remove('visible'); }
+            });
+            toTopBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
+    });
     </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer></script>
 </body>
 </html>
