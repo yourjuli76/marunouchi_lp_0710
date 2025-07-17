@@ -24,9 +24,10 @@
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
-    <style>
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Noto+Sans+JP:wght@400;700&display=swap');
 
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <style>
+@import url('https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@700;800&family=Zen+Kaku+Gothic+New:wght@400;700&display=swap');
 /* ==========================================================================
    1. Root Variables & Global Styles
    ========================================================================== */
@@ -545,25 +546,33 @@ body.nav-open .mobile-nav {
 }
 
 
-/* Hero Section */
+/* ==========================================================================
+   Hero Section (Upgraded & Stylish)
+   ========================================================================== */
+
+/* 텍스트 등장 애니메이션 정의 */
+@keyframes fadeIn-up {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 .hero-banner {
     position: relative;
     width: 100%;
-    height: 600px;
+    height: 900px;
     overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    background-color: #333;
+    display: grid;
+    place-items: center;
 }
 
-.hero-slideshow {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-}
-
+/* 켄 번스 효과 등 슬라이드쇼 배경은 그대로 유지 */
 .hero-slideshow .slide {
     position: absolute;
     top: 0;
@@ -572,70 +581,144 @@ body.nav-open .mobile-nav {
     height: 100%;
     background-size: cover;
     background-position: center;
+    transform: scale(1.1);
     opacity: 0;
-    transform: scale(1.02);
-    transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
+    transition: opacity 1.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
-
+@keyframes kenburns-zoom {
+    from { transform: scale(1); }
+    to { transform: scale(1.1); }
+}
 .hero-slideshow .slide.active {
     opacity: 1;
-    transform: scale(1);
     z-index: 1;
+    animation: kenburns-zoom 10s ease-out forwards;
 }
-
 .hero-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.5) 50%, rgba(0, 0, 0, 0.3) 100%);
+    /* 아래에서 위로 올라갈수록 투명해지는 그라데이션 효과 */
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, transparent 50%);
     z-index: 2;
-    pointer-events: none;
 }
 
+/* [수정] 유리 질감(Glassmorphism) 효과 적용 */
 .hero-content-wrapper {
     position: relative;
     z-index: 3;
     color: #fff;
     text-align: center;
-    width: 100%;
-    padding-bottom: 80px;
+    width: clamp(300px, 90%, 800px);
+    padding: 2.5rem 3rem;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+    border-radius: 16px;
+
+    /* --- 이 부분이 수정되었습니다 --- */
+    
+    /* 배경색의 투명도를 0.25에서 0.1로 낮춰 훨씬 투명하게 만듭니다. */
+    background: rgba(0, 0, 0, 0.1);
+
+    /* 블러 효과를 살짝 줄여 배경이 더 잘 보이도록 합니다. */
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+
+    /* 테두리도 배경에 맞춰 조금 더 투명하게 조정합니다. */
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
+/* 기존 .hero-content h1 과 .hero-content p 를 아래 코드로 교체 */
+
+/* [수정] 타이틀 - 텍스트 그라데이션 & 글로우 효과 */
 .hero-content h1 {
     font-family: var(--font-serif);
-    font-weight: 700;
-    margin-bottom: 15px;
-    color: #FFFFFF;
-    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);
-    line-height: 1.2;
-    font-size: 3em;
+    font-weight: 800; /* 폰트 굵기를 더 굵게 하여 존재감 부여 */
+    font-size: clamp(2.8rem, 6vw, 4.5rem);
+    line-height: 1.25;
+    letter-spacing: 1px;
+    margin-bottom: 1rem;
+    animation: fadeIn-up 1s ease-out 0.5s both;
+
+    /* 텍스트 그라데이션 효과 */
+    background: linear-gradient(135deg, #ffffff 50%, #d1b588 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+
+    /* 텍스트 글로우(Glow) 및 그림자 효과 */
+    text-shadow: 
+        0px 2px 10px rgba(0, 0, 0, 0.3),      /* 기본 그림자 */
+        0 0 15px rgba(255, 215, 130, 0.2);     /* 은은한 골드빛 글로우 */
 }
+
+/* 기존 .hero-content h1 .english-title 부분을 이 코드로 교체 */
 
 .hero-content h1 .english-title {
-    font-size: 0.7em;
-    display: block;
-    margin-top: 5px;
-    font-family: var(--font-serif);
-    opacity: 0.9;
-    font-weight: 600;
+    display: block; /* 별도의 블록으로 만들어 자신의 줄 간격을 갖도록 함 */
+    font-size: 0.45em; /* 크기를 약간 키워 균형 맞춤 */
+    font-weight: 700;
+    letter-spacing: 2px; /* 자간을 살짝 줄여 자연스럽게 */
+    /* text-transform: uppercase;  <- 대문자 변환 속성 삭제 */
+    
+    background: none;
+    -webkit-background-clip: initial;
+    background-clip: initial;
+    color: rgba(255, 255, 255, 0.9); /* 선명도를 위해 투명도 살짝 조정 */
+    text-shadow: 0 1px 5px rgba(0,0,0,0.5);
+    
+    line-height: 1.6; /* 자신만의 적절한 줄 간격 설정 */
+    margin-top: 15px; /* 위쪽 일본어 제목과의 간격 추가 */
 }
 
+/* [수정] 설명 텍스트 - 가독성 및 스타일 강화 */
 .hero-content p {
     font-family: var(--font-sans);
-    font-weight: 400;
-    font-size: 1.2em;
-    margin-bottom: 30px;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7); /* 그림자를 더 진하게 하여 가독성 확보 */
+    margin-bottom: 2rem;
+    animation: fadeIn-up 1s ease-out 0.8s both;
+    line-height: 1.7;
+    opacity: 0.9;
+    max-width: 600px; /* 설명 텍스트의 최대 너비를 제한하여 줄바꿈 유도 */
+    margin-left: auto;
+    margin-right: auto;
 }
-
-.hero-content p .english-subtitle {
-    font-size: 0.85em;
-    display: block;
-    margin-top: 3px;
+/* [수정] 설명 텍스트 폰트 및 애니메이션 */
+.hero-content p {
     font-family: var(--font-sans);
-    font-weight: 300;
-    opacity: 0.8;
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    margin-bottom: 2rem;
+    animation: fadeIn-up 1s ease-out 0.8s both;
+    line-height: 1.6;
+    opacity: 0.95;
 }
 
+/* [수정] 버튼 스타일 변경 */
+.cta-button {
+    font-family: var(--font-sans);
+    font-weight: 700;
+    font-size: 1.1em;
+    padding: 14px 32px;
+    cursor: pointer;
+    border-radius: 50px; /* 둥근 모서리 */
+    
+    color: #fff;
+    background: rgba(255, 255, 255, 0.1); /* 반투명 배경 */
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(5px);
+    
+    transition: all 0.3s ease;
+    animation: fadeIn-up 1s ease-out 1.1s both;
+}
+
+.cta-button:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.8);
+    transform: translateY(-3px); /* 살짝 위로 이동 */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+/* 히어로 슬라이드 컨트롤러는 그대로 유지 */
 .hero-controls-wrapper {
     position: absolute;
     bottom: 30px;
@@ -684,6 +767,47 @@ body.nav-open .mobile-nav {
 
 .pager-dot.active {
     background-color: white;
+}
+
+/* ==========================================================================
+   Hero Section - Mobile Responsive Styles
+   ========================================================================== */
+
+   @media (max-width: 768px) {
+    /* 모바일에서 히어로 섹션의 높이를 화면의 95%로 살짝 줄여, 아래에 콘텐츠가 더 있음을 암시합니다. */
+    .hero-banner {
+        height: 85vh;
+    }
+
+    /* 모바일에서 유리 배너의 내부 여백(padding)과 너비를 조정합니다. */
+    .hero-content-wrapper {
+        width: 90%;
+        padding: 2rem 1.5rem;
+    }
+
+    /* 모바일에서 제목 폰트 크기를 줄입니다. */
+    .hero-content h1 {
+        font-size: 2.1rem; 
+        line-height: 1.2;
+    }
+    
+    /* 모바일에서 영어 부제 스타일을 미세 조정합니다. */
+    .hero-content h1 .english-title {
+        font-size: 0.4em;
+        letter-spacing: 2px;
+        line-height: 1.5;
+    }
+
+    /* 모바일에서 설명 텍스트 크기를 조정합니다. */
+    .hero-content p {
+        font-size: 1rem;
+    }
+
+    /* 모바일에서 버튼 크기를 조정합니다. */
+    .cta-button {
+        font-size: 1rem;
+        padding: 12px 28px;
+    }
 }
 
 /* Origin Intro Section */
@@ -743,49 +867,52 @@ body.nav-open .mobile-nav {
 }
 
 /* ==========================================================================
-   Horizontal Timeline Section (Corrected)
+   Timeline Section with Swiper.js (FINAL & CLEANED)
    ========================================================================== */
-   .timeline-container {
+
+/* 타임라인 섹션의 전체 컨테이너 */
+.timeline-container {
     padding: 80px 0;
     background-color: var(--color-light-bg);
+    position: relative; /* 버튼 절대 위치를 위한 기준점 */
 }
 
-.timeline-container .section-title {
-    font-family: var(--font-serif);
-    font-weight: 700;
-    text-align: center;
-    margin-bottom: 60px;
-    color: var(--color-main);
-    font-size: 2.8rem;
+/* Swiper 라이브러리가 사용하는 기본 컨테이너 */
+.timeline-swiper.swiper-container {
+    width: 100%;
+    padding: 10px 0 50px 0; /* 아래쪽 페이지네이션(점)을 위한 여백 */
 }
 
-.timeline-horizontal-scroll-wrapper {
-    overflow: hidden;
-    position: relative;
-}
-
-/* For PC, allow the container to scroll horizontally based on its content */
-.timeline-horizontal-scroll {
+/* 개별 슬라이드(카드를 감싸는) 스타일 */
+.timeline-swiper .swiper-slide {
+    width: 320px; /* PC에서 각 카드의 너비 */
+    height: auto; /* 내용에 따라 높이 자동 조절 */
     display: flex;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    width: 100%; /* << 이 속성이 핵심입니다! */
-    -webkit-overflow-scrolling: touch; 
-    padding: 10px 2px 30px 2px; /* 좌우 패딩을 약간 추가하여 여백을 줍니다 */
-    scrollbar-width: thin;
-    /* 스크롤바 스냅 기능 (선택사항) */
-    scroll-snap-type: x mandatory;
-}
-/* 카드 스냅 정렬 (선택사항) */
-.timeline-card {
-    /* ... 기존 스타일 ... */
-    scroll-snap-align: start; /* 또는 center */
+    transition: transform 0.4s, opacity 0.4s;
+    opacity: 0.4;
+    transform: scale(0.85);
 }
 
-/* This is the primary style for the timeline card on desktop */
+/* 중앙 및 양옆의 활성화된 슬라이드 스타일 */
+.timeline-swiper .swiper-slide-active,
+.timeline-swiper .swiper-slide-next,
+.timeline-swiper .swiper-slide-prev {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* 중앙 슬라이드를 더 강조하는 효과 */
+.timeline-swiper .swiper-slide-active {
+    transform: scale(1.05);
+}
+
+
+/* --- 카드 자체의 디자인 스타일 --- */
+
+/* 카드 기본 디자인 */
 .timeline-card {
-    flex: 0 0 320px; /* Giving it a fixed width */
-    margin-left: 25px;
+    width: 100%; /* 부모인 swiper-slide를 꽉 채움 */
+    height: 100%;
     background-color: #fff;
     border-radius: 12px;
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
@@ -796,15 +923,12 @@ body.nav-open .mobile-nav {
     min-height: 500px;
 }
 
-.timeline-card:first-child {
-    margin-left: 0;
-}
-
 .timeline-card:hover {
     transform: translateY(-8px);
     box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
 }
 
+/* 카드 내부 요소들 디자인 */
 .timeline-card .card-year {
     font-family: var(--font-serif);
     font-weight: 700;
@@ -838,8 +962,6 @@ body.nav-open .mobile-nav {
     object-fit: cover;
     border-radius: 8px;
     margin-bottom: 15px;
-    filter: saturate(0.9) brightness(1.05);
-    transition: transform 0.4s ease;
 }
 
 .timeline-card:hover .card-content img {
@@ -875,7 +997,6 @@ body.nav-open .mobile-nav {
     font-size: 0.85em;
 }
 
-/* Video container in timeline */
 .timeline-card .video-container {
     position: relative;
     padding-bottom: 56.25%;
@@ -889,6 +1010,42 @@ body.nav-open .mobile-nav {
     left: 0;
     width: 100%;
     height: 100%;
+}
+
+
+/* --- Swiper 컨트롤러(버튼, 점) 스타일 --- */
+
+/* Swiper 네비게이션 버튼(화살표) 커스텀 */
+.timeline-container .swiper-button-next,
+.timeline-container .swiper-button-prev {
+    color: var(--color-main);
+    top: 45%;
+    width: 50px;
+    height: 50px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: background-color 0.3s;
+}
+.timeline-container .swiper-button-next:hover,
+.timeline-container .swiper-button-prev:hover {
+    background-color: #fff;
+}
+
+
+/* Swiper 페이지네이션(점) 활성 아이콘 색상 */
+.timeline-swiper .swiper-pagination-bullet-active {
+    background: var(--color-main);
+}
+
+
+/* --- 모바일 화면 대응 --- */
+@media (max-width: 768px) {
+    .timeline-swiper .swiper-slide {
+        width: 85%; /* 모바일에서는 화면 너비의 85% */
+        transform: scale(1);
+        opacity: 1;
+    }
 }
 
 /* Highlight Feature Section */
@@ -2494,6 +2651,7 @@ body.nav-open .mobile-nav {
     }
 }
     </style>
+
 </head>
 <body>
     <nav class="side-nav">
@@ -2587,8 +2745,8 @@ body.nav-open .mobile-nav {
             <div class="hero-content-wrapper">
                 <div class="hero-content">
                     <h1>
-                        Marunouchi, 時を超える物語<br>
-                        <span class="english-title">Experience Tokyo's Timeless Elegance</span>
+                        Marunouchi, <br>時を超える物語<br>
+                        <span class="english-title">Experience Tokyo's <br>Timeless Elegance</span>
                     </h1>
                     <p>
                         江戸の大名屋敷から、未来を描く街へ<br>
@@ -2608,89 +2766,110 @@ body.nav-open .mobile-nav {
         </section>
         
         
-        <section id="about" class="content-section">
-            <div class="container">
-                <div class="section-header">
-                    <h2><span class="lang-jp">伝統と革新が交差する場所、丸の内</span><span class="lang-en">Marunouchi, Where Tradition Meets Tomorrow</span></h2>
-                    <p><span class="lang-jp">かつて大名屋敷が並んだこの地は、今や日本のビジネスと文化をリードする洗練された街へと進化しました。歴史的建築物と最新のビルが織りなすユニークな景観の中、特別な時間をお過ごしください。</span><span class="lang-en">Once lined with daimyo residences, this area has evolved into a sophisticated district leading Japan's business and culture. Enjoy a special time amidst a unique landscape of historic and modern architecture.</span></p>
-                </div>
-        </section>
         <section id="timeline-section" class="timeline-container">
             <div class="section-header">
-                <h2>
-                    <span class="lang-jp">丸の内、時を超えた物語の始まり</span>
-                    <span class="lang-en">The Beginning of a Timeless Story</span></h2>
-                <p>
-                    <span class="lang-jp">この地の名は、かつて江戸城を囲む「お堀の内側（丸の内）」に由来します。大名屋敷が連なる歴史から、日本を牽引するビジネスと文化の中心地へ。知られざる物語が、今、紐解かれます。</span>
-                    <span class="lang-en">From a succession of feudal lord residences, it has grown into Japan’s leading hub of business and culture</span>
-                </p></div>
-                <div class="timeline-horizontal-scroll-wrapper">
-                    <div class="timeline-horizontal-scroll" id="timeline-slider-1">
-                        <div class="timeline-card">
-                            <div class="card-year">1600s</div>
-                            <div class="card-icon">🏯</div>
-                            <div class="card-content">
-                                <img src="https://www.mec.co.jp/assets/img/history/history01-04-pc.jpg" alt="大名屋敷のイラスト">
-                                <h3 class="card-title">江戸時代：大名屋敷の時代</h3>
-                                <p class="card-description">かつてこの地は、広大な江戸城の一部であり、有力な大名屋敷が立ち並ぶ場所でした。丸の内という地名の由来も、外堀の内側にあったことから来ています。</p>
-                                <blockquote>"歴史は土地に刻まれ、未来を形作る。"</blockquote>
-                            </div>
-                        </div>
-
-                        <div class="timeline-card">
-                            <div class="card-year">1873</div>
-                            <div class="card-icon">🏦</div>
-                            <div class="card-content">
-                                <img src="https://www.mec.co.jp/assets/img/history/history02-01-pc.jpg" alt="三菱本社移転時の写真">
-                                <h3 class="card-title">明治時代：三菱本社移転</h3>
-                                <p class="card-description">明治維新後、政府はこの土地を払い下げ、三菱社が購入。ここに近代的なオフィス街が形成される第一歩が記されました。</p>
-                                <blockquote>"文明開化の息吹、新たな時代の幕開け。"</blockquote>
-                            </div>
-                        </div>
-
-                        <div class="timeline-card">
-                            <div class="card-year">1945</div>
-                            <div class="card-icon">🏗️</div>
-                            <div class="card-content">
-                                <img src="https://www.mec.co.jp/assets/img/history/history03-01-pc.jpg" alt="焼け野原から再建される丸の内のGIFアニメーション">
-                                <h3 class="card-title">戦後復興：焼け野原から</h3>
-                                <p class="card-description">第二次世界大戦の空襲により壊滅的な被害を受けましたが、奇跡的な復興を遂げ、日本の経済成長を牽引する中心地として蘇りました。</p>
-                                <blockquote>"廃墟からの復活、不屈の精神。"</blockquote>
-                            </div>
-                        </div>
-
-                        <div class="timeline-card">
-                            <div class="card-year">1990s</div>
-                            <div class="card-icon">🏙️</div>
-                            <div class="card-content">
-                                <div class="image-slider">
-                                    <img src="https://www.mec.co.jp/assets/img/history/history04-02-pc.jpg" alt="丸ビルリニューアル前" class="slider-image active">
-                                    <img src="https://www.mec.co.jp/assets/img/history/history04-03-pc.jpg" alt="丸ビルリニューアル後" class="slider-image">
-                                </div>
-                                <h3 class="card-title">現代都市再生：丸ビルリニューアル</h3>
-                                <p class="card-description">バブル崩壊後、丸の内は大規模な再開発プロジェクトに着手。特に丸ビルなどのリニューアルは、新たな魅力を持つ現代都市への転換点となりました。</p>
-                                <blockquote>"伝統と革新の融合、都市の進化。"</blockquote>
-                            </div>
-                        </div>
-
-                        <div class="timeline-card">
-                            <div class="card-year">Today</div>
-                            <div class="card-icon">✨</div>
-                            <div class="card-content">
-                                <div class="video-container">
-                                    <iframe width="560" height="315" src="https://www.youtube.com/embed/YOUR_VIDEO_ID_HERE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                                </div>
-                                <h3 class="card-title">Timeless Elegance：現在</h3>
-                                <p class="card-description">現代の丸の内は、ビジネスの中心地であると同時に、多様な人々が集い、文化が交差する「Timeless Elegance」を体現する街へと成長しています。</p>
-                                <blockquote>"時を超えて輝く、丸の内の魅力。"</blockquote>
-                            </div>
-                        </div>
-                    </div>
-                    <button class="scroll-btn prev-btn">‹</button>
-                    <button class="scroll-btn next-btn">›</button>
-                </div>
+              <h2>
+                <span class="lang-jp">丸の内、時を超えた物語の始まり</span>
+                <span class="lang-en">The Beginning of a Timeless Story</span>
+              </h2>
+              <p>
+                <span class="lang-jp">この地の名は、かつて江戸城を囲む「お堀の内側（丸の内）」に由来します。<br>大名屋敷が連なる歴史から、日本を牽引するビジネスと文化の中心地へ。<br>知られざる物語が、今、紐解かれます。</span>
+                <span class="lang-en">The name 'Marunouchi' literally means 'inside the circle,' derived from its historic location within the outer moats of Edo Castle. From its origins as an area lined with the estates of feudal lords, it has evolved into Japan's leading center for business and culture. Its remarkable story now unfolds.</span>
+              </p>
             </div>
-        </section>
+    
+            <!-- Swiper コンテナ -->
+            <div class="swiper-container timeline-swiper">
+              <div class="swiper-wrapper">
+                <!-- 1600s -->
+                <div class="swiper-slide">
+                  <div class="timeline-card">
+                    <div class="card-year">1600s</div>
+                    <div class="card-icon">🏯</div>
+                    <div class="card-content">
+                      <img src="https://www.mec.co.jp/assets/img/history/history01-04-pc.jpg" alt="大名屋敷のイラスト">
+                      <h3 class="card-title">江戸時代：大名屋敷の時代</h3>
+                      <p class="card-description">
+                        かつてこの地は、広大な江戸城の一部であり、有力な大名屋敷が立ち並ぶ場所でした。丸の内という地名の由来も、外堀の内側にあったことから来ています。
+                      </p>
+                      <blockquote>"歴史は土地に刻まれ、未来を形作る。"</blockquote>
+                    </div>
+                  </div>
+                </div>
+                <!-- 1873 -->
+                <div class="swiper-slide">
+                  <div class="timeline-card">
+                    <div class="card-year">1873</div>
+                    <div class="card-icon">🏦</div>
+                    <div class="card-content">
+                      <img src="https://www.mec.co.jp/assets/img/history/history02-01-pc.jpg" alt="三菱本社移転時の写真">
+                      <h3 class="card-title">明治時代：三菱本社移転</h3>
+                      <p class="card-description">
+                        明治維新後、政府はこの土地を払い下げ、三菱社が購入。ここに近代的なオフィス街が形成される第一歩が記されました。
+                      </p>
+                      <blockquote>"文明開化の息吹、新たな時代の幕開け。"</blockquote>
+                    </div>
+                  </div>
+                </div>
+                <!-- 1945 -->
+                <div class="swiper-slide">
+                  <div class="timeline-card">
+                    <div class="card-year">1945</div>
+                    <div class="card-icon">🏗️</div>
+                    <div class="card-content">
+                      <img src="https://www.mec.co.jp/assets/img/history/history03-01-pc.jpg" alt="焼け野原から再建される丸の内のGIFアニメーション">
+                      <h3 class="card-title">戦後復興：焼け野原から</h3>
+                      <p class="card-description">
+                        第二次世界大戦の空襲により壊滅的な被害を受けましたが、奇跡的な復興を遂げ、日本の経済成長を牽引する中心地として蘇りました。
+                      </p>
+                      <blockquote>"廃墟からの復活、不屈の精神。"</blockquote>
+                    </div>
+                  </div>
+                </div>
+                <!-- 1990s -->
+                <div class="swiper-slide">
+                  <div class="timeline-card">
+                    <div class="card-year">1990s</div>
+                    <div class="card-icon">🏙️</div>
+                    <div class="card-content">
+                      <div class="image-slider">
+                        <img src="https://www.mec.co.jp/assets/img/history/history04-02-pc.jpg" alt="丸ビルリニューアル前" class="slider-image active">
+                        <img src="https://www.mec.co.jp/assets/img/history/history04-03-pc.jpg" alt="丸ビルリニューアル後" class="slider-image">
+                      </div>
+                      <h3 class="card-title">現代都市再生：丸ビルリニューアル</h3>
+                      <p class="card-description">
+                        バブル崩壊後、丸の内は大規模な再開発プロジェクトに着手。特に丸ビルなどのリニューアルは、新たな魅力を持つ現代都市への転換点となりました。
+                      </p>
+                      <blockquote>"伝統と革新の融合、都市の進化。"</blockquote>
+                    </div>
+                  </div>
+                </div>
+                <!-- Today -->
+                <div class="swiper-slide">
+                  <div class="timeline-card">
+                    <div class="card-year">Today</div>
+                    <div class="card-icon">✨</div>
+                    <div class="card-content">
+                      <div class="video-container">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/YOUR_VIDEO_ID_HERE"
+                          frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                          allowfullscreen></iframe>
+                      </div>
+                      <h3 class="card-title">Timeless Elegance：現在</h3>
+                      <p class="card-description">
+                        現代の丸の内は、ビジネスの中心地であると同時に、多様な人々が集い、文化が交差する「Timeless Elegance」を体現する街へと成長しています。
+                      </p>
+                      <blockquote>"時を超えて輝く、丸の内の魅力。"</blockquote>
+                    </div>
+                  </div>
+                </div>
+              </div>
+    
+              
+              <!-- 페이지네이션 -->
+              <div class="swiper-pagination"></div>
+            </div>
+          </section>
         
         <section id="highlights" class="content-section light-bg">
             <div class="container">
@@ -3362,7 +3541,7 @@ body.nav-open .mobile-nav {
             <svg viewBox="0 0 24 24"><path fill="currentColor" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6l-6 6z"></path></svg>
         </a>
     </main>
-
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
 
     <script>
@@ -3434,67 +3613,79 @@ body.nav-open .mobile-nav {
                 }
             }
     
-            // Hero Slideshow
-            if (elementExists('.hero-slideshow')) {
-                const heroSlides = document.querySelectorAll('.hero-slideshow .slide');
-                const nextBtn = document.getElementById('next-slide');
-                const prevBtn = document.getElementById('prev-slide');
-                const pagerContainer = document.querySelector('.slide-pager');
-    
-                if (heroSlides.length > 0 && nextBtn && prevBtn && pagerContainer) {
-                    let currentIndex = 0;
-                    let slideInterval;
-                    const pagerDots = [];
-    
-                    function showSlide(index) {
-                        heroSlides.forEach((slide, i) => slide.classList.toggle('active', i === index));
-                        pagerDots.forEach((dot, i) => dot.classList.toggle('active', i === index));
-                        currentIndex = index;
-                    }
-    
-                    function nextSlide() {
-                        showSlide((currentIndex + 1) % heroSlides.length);
-                    }
-    
-                    function prevSlide() {
-                        showSlide((currentIndex - 1 + heroSlides.length) % heroSlides.length);
-                    }
-    
-                    function startSlideShow() {
-                        stopSlideShow();
-                        slideInterval = setInterval(nextSlide, 7500);
-                    }
-    
-                    function stopSlideShow() {
-                        clearInterval(slideInterval);
-                    }
-    
-                    nextBtn.addEventListener('click', () => {
-                        nextSlide();
-                        startSlideShow();
-                    });
-    
-                    prevBtn.addEventListener('click', () => {
-                        prevSlide();
-                        startSlideShow();
-                    });
-    
-                    heroSlides.forEach((_, i) => {
-                        const dot = document.createElement('div');
-                        dot.classList.add('pager-dot');
-                        dot.addEventListener('click', () => {
-                            showSlide(i);
-                            startSlideShow();
-                        });
-                        pagerContainer.appendChild(dot);
-                        pagerDots.push(dot);
-                    });
-    
-                    showSlide(0);
-                    startSlideShow();
-                }
+            // 기존 'Hero Slideshow' 자바스크립트 블록을 이 코드로 교체
+
+// Hero Slideshow
+if (elementExists('.hero-slideshow')) {
+    const slides = document.querySelectorAll('.hero-slideshow .slide');
+    const nextBtn = document.getElementById('next-slide');
+    const prevBtn = document.getElementById('prev-slide');
+    const pagerContainer = document.querySelector('.slide-pager');
+
+    if (slides.length > 0) {
+        let currentIndex = 0;
+        let slideInterval;
+        const slideDuration = 8000; // 각 슬라이드가 보여지는 시간 (8초)
+        const pagerDots = [];
+
+        function showSlide(index) {
+            // 이전 슬라이드의 active 클래스만 제거
+            const currentActive = document.querySelector('.hero-slideshow .slide.active');
+            if (currentActive) {
+                currentActive.classList.remove('active');
             }
-    
+            
+            // 새 슬라이드에 active 클래스 추가하고 애니메이션 재시작
+            const newSlide = slides[index];
+            newSlide.classList.add('active');
+            
+            // 애니메이션 재시작을 위해 클래스 제거 후 다시 추가 (선택사항, 더 확실한 재시작을 위함)
+            newSlide.style.animation = 'none';
+            newSlide.offsetHeight; /* 강제 리플로우 */
+            newSlide.style.animation = ''; 
+
+            if (pagerDots.length > 0) {
+                 pagerDots.forEach((dot, i) => dot.classList.toggle('active', i === index));
+            }
+            currentIndex = index;
+        }
+
+        function nextSlide() {
+            showSlide((currentIndex + 1) % slides.length);
+        }
+
+        function prevSlide() {
+            showSlide((currentIndex - 1 + slides.length) % slides.length);
+        }
+
+        function startSlideShow() {
+            stopSlideShow();
+            slideInterval = setInterval(nextSlide, slideDuration);
+        }
+
+        function stopSlideShow() {
+            clearInterval(slideInterval);
+        }
+
+        // 버튼 및 페이저 생성 (버튼이 존재할 경우에만)
+        if (nextBtn && prevBtn && pagerContainer) {
+            nextBtn.addEventListener('click', () => { nextSlide(); startSlideShow(); });
+            prevBtn.addEventListener('click', () => { prevSlide(); startSlideShow(); });
+
+            slides.forEach((_, i) => {
+                const dot = document.createElement('div');
+                dot.classList.add('pager-dot');
+                dot.addEventListener('click', () => { showSlide(i); startSlideShow(); });
+                pagerContainer.appendChild(dot);
+                pagerDots.push(dot);
+            });
+        }
+        
+        // 초기 슬라이드 표시 및 자동 재생 시작
+        showSlide(0);
+        startSlideShow();
+    }
+}
             // Card Slider
             if (elementExists('#recommended-slider')) {
                 const slider = document.getElementById('recommended-slider');
@@ -3675,47 +3866,9 @@ body.nav-open .mobile-nav {
                 });
             }
             
-            // [삭제됨] 오래된 타임라인 애니메이션 로직은 삭제되었습니다.
     
-            // Timeline horizontal scroll (PC)
-            const timelineScrollContainer = document.querySelector('.timeline-horizontal-scroll');
-            const prevScrollBtn = document.querySelector('.timeline-horizontal-scroll-wrapper .prev-btn');
-            const nextScrollBtn = document.querySelector('.timeline-horizontal-scroll-wrapper .next-btn');
-    
-            if (timelineScrollContainer && prevScrollBtn && nextScrollBtn) {
-                prevScrollBtn.addEventListener('click', () => {
-                    timelineScrollContainer.scrollBy({
-                        left: -timelineScrollContainer.offsetWidth * 0.8,
-                        behavior: 'smooth'
-                    });
-                });
-    
-                nextScrollBtn.addEventListener('click', () => {
-                    timelineScrollContainer.scrollBy({
-                        left: timelineScrollContainer.offsetWidth * 0.8,
-                        behavior: 'smooth'
-                    });
-                });
-    
-                const checkScrollButtons = () => {
-                    const scrollLeft = timelineScrollContainer.scrollLeft;
-                    const scrollWidth = timelineScrollContainer.scrollWidth;
-                    const clientWidth = timelineScrollContainer.clientWidth;
-    
-                    if (scrollWidth > clientWidth) {
-                        prevScrollBtn.style.display = scrollLeft > 10 ? 'block' : 'none';
-                        nextScrollBtn.style.display = scrollLeft + clientWidth < scrollWidth - 10 ? 'block' : 'none';
-                    } else {
-                        prevScrollBtn.style.display = 'none';
-                        nextScrollBtn.style.display = 'none';
-                    }
-                };
-    
-                timelineScrollContainer.addEventListener('scroll', checkScrollButtons);
-                setTimeout(checkScrollButtons, 500); 
-                window.addEventListener('resize', checkScrollButtons);
-            }
-    
+           
+            
             // Timeline card internal image slider (1990s section etc.)
             const timelineImageSliders = document.querySelectorAll('.timeline-card .image-slider');
             let timelineSliderIntervals = {};
@@ -3795,7 +3948,33 @@ body.nav-open .mobile-nav {
                 }, { threshold: 0.1 });
                 originObserver.observe(originSectionContent);
             }
-        });
+            // 기존 new Swiper(...) 부분을 이 코드로 교체
+
+new Swiper('.timeline-swiper', {
+    // --- 핵심 옵션 ---
+    effect: 'coverflow',      // 입체적인 효과
+    grabCursor: true,         // 마우스 커서를 잡는 모양으로
+    centeredSlides: true,     // 활성 슬라이드를 항상 중앙에 배치
+    loop: true,               // 무한 루프
+    slidesPerView: 'auto',    // CSS에서 정한 width를 따름
+
+    // 커버플로우 효과 세부 설정
+    coverflowEffect: {
+        rotate: 0,          // 회전 없음
+        stretch: 80,        // 슬라이드 간 간격
+        depth: 150,         // 깊이감
+        modifier: 1,
+        slideShadows: false, // 슬라이드 그림자 비활성화
+    },
+
+    // 페이지네이션 (점)
+    pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+    },
+
+});
+});
     </script>
 </body>
 </html>
