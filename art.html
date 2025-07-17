@@ -63,30 +63,171 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 /* --- 2. 헤더 & 내비게이션 --- */
-.main-header {
-    height: var(--header-height);
-    display: flex; align-items: center;
+/* =================================================
+     HEADER & NAVIGATION CSS
+     ================================================= */
+
+     .main-header {
+    height: 80px; /* var(--header-height) */
+    display: flex;
+    align-items: center;
     background-color: rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     border-bottom: 1px solid transparent;
-    position: sticky; top: 0; z-index: 1000;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
     transition: all 0.3s ease;
 }
+
 .main-header.scrolled {
     background-color: rgba(255, 255, 255, 0.98);
     box-shadow: 0 2px 20px rgba(0,0,0,0.06);
     border-bottom-color: #eaeaea;
 }
-.header-container { width: 100%; display: flex; justify-content: space-between; align-items: center; }
-.logo { font-size: 1.8rem; text-decoration: none; color: var(--color-main); font-family: var(--font-serif); }
-.main-nav a, .dropdown .dropbtn { color: var(--color-main); margin: 0 18px; font-weight: 500; font-size: 1rem; text-decoration: none; }
-.dropdown { position: relative; display: inline-block; }
-.dropdown .dropbtn { border: none; background: transparent; cursor: pointer; }
-.dropdown-content { display: none; position: absolute; background-color: #fff; min-width: 220px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); z-index: 1; border-radius: 8px; border: 1px solid #f0f0f0; margin-top: 15px; animation: fadeIn 0.3s ease; }
-.dropdown:hover .dropdown-content { display: block; }
-.dropdown-content a { color: var(--color-text); padding: 14px 20px; display: block; font-weight: 500; }
-.dropdown-content a:hover { background-color: var(--color-light-bg); color: var(--color-accent); }
-@keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+
+.header-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.8rem;
+    text-decoration: none;
+    color: var(--color-main);
+    font-family: var(--font-serif);
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+}
+
+.main-nav {
+    display: none; /* 모바일 우선, 데스크톱에서 보이도록 아래 미디어쿼리에서 설정 */
+}
+
+.main-nav a, .dropdown .dropbtn {
+    color: var(--color-main);
+    margin: 0 18px;
+    font-weight: 500;
+    font-size: 1rem;
+    text-decoration: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    min-width: 220px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    z-index: 1;
+    border-radius: 8px;
+    border: 1px solid #f0f0f0;
+    margin-top: 15px;
+    animation: fadeIn 0.3s ease;
+}
+
+.dropdown.open .dropdown-content { 
+    display: block; 
+}
+
+.dropdown-content a {
+    color: var(--color-text);
+    padding: 14px 20px;
+    display: block;
+    font-weight: 500;
+}
+
+.dropdown-content a:hover {
+    background-color: var(--color-light-bg);
+    color: var(--color-accent);
+}
+
+.lang-switcher {
+    font-size: .9rem;
+    margin-left: 20px;
+    padding-left: 20px;
+    border-left: 1px solid #ddd;
+}
+.lang-switcher a {
+    color: #999;
+    font-weight: 700;
+    margin: 0 4px;
+}
+.lang-switcher a.active {
+    color: var(--color-main);
+}
+
+/* --- 모바일 내비게이션 --- */
+.hamburger-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    margin-left: 10px;
+}
+
+.mobile-nav-overlay {
+    position: fixed; top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.6);
+    z-index: 2000;
+    visibility: hidden; opacity: 0;
+    transition: opacity 0.4s, visibility 0.4s;
+}
+.mobile-nav {
+    position: fixed; top: 0; right: -320px; /* 오른쪽에서 나오도록 변경 */
+    width: 300px; height: 100%;
+    background-color: #fff;
+    box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+    transition: transform 0.4s ease-in-out;
+    padding: 20px;
+    display: flex; flex-direction: column;
+}
+
+body.nav-open { overflow: hidden; }
+body.nav-open .mobile-nav-overlay { visibility: visible; opacity: 1; }
+body.nav-open .mobile-nav { transform: translateX(-320px); }
+
+.mobile-nav-header {
+    display: flex; justify-content: space-between; align-items: center;
+    padding-bottom: 20px; border-bottom: 1px solid #eee;
+}
+.close-btn { background: none; border: none; cursor: pointer; color: var(--color-main); }
+.mobile-nav ul { list-style: none; padding-top: 20px; }
+.mobile-nav ul li a {
+    display: block; padding: 15px 10px;
+    font-size: 1.1rem; font-weight: 700;
+    color: var(--color-main);
+    border-radius: 6px;
+    transition: background-color .3s, color .3s;
+}
+.mobile-nav ul li a:hover { background-color: var(--color-light-bg); color: var(--color-accent); }
+
+
+/* 데스크톱 사이즈에서만 보이는 요소들 */
+@media (min-width: 992px) {
+    .main-nav {
+        display: flex;
+        align-items: center;
+    }
+    .hamburger-btn {
+        display: none;
+    }
+}
 
 /* --- 3. 서브페이지 히어로 --- */
 .sub-hero {
@@ -242,14 +383,47 @@ img { max-width: 100%; height: auto; display: block; }
 <body>
     <header class="main-header">
         <div class="header-container container">
-            <a href="index.html" class="logo">Marunouchi Art</a>
-            <nav class="main-nav">
-                <a href="#spots">Key Spots</a>
-                <a href="#courses">Courses</a>
-                <a href="#tips">Tips</a>
-            </nav>
+            <a href="index.html" class="logo">marunouchi.com</a>
+            <div class="header-right">
+                <nav class="main-nav">
+                    <div class="dropdown">
+                        <button class="dropbtn">テーマ別に見る ▼</button>
+                        <div class="dropdown-content">
+                            <a href="art.html">Art & Architecture</a>
+                            <a href="gourmet.html">Gourmet</a>
+                            <a href="shopping.html">Shopping</a>
+                            <a href="relax.html">Relaxation</a>
+                        </div>
+                    </div>
+                    <a href="index.html#events">Events</a>
+                    <a href="index.html#map">Map</a>
+                </nav>
+                <div class="lang-switcher">
+                    <a href="#" class="active">JP</a>
+                    <a href="#">EN</a>
+                </div>
+                <button id="hamburger-btn" class="hamburger-btn">
+                    <svg viewBox="0 0 24 24" width="28" height="28"><path fill="currentColor" d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"></path></svg>
+                </button>
+            </div>
         </div>
     </header>
+    
+    <div id="mobile-nav-overlay" class="mobile-nav-overlay">
+        <nav id="mobile-nav" class="mobile-nav">
+            <div class="mobile-nav-header">
+                <a href="index.html" class="logo">marunouchi.com</a>
+                <button id="close-btn" class="close-btn">
+                    <svg viewBox="0 0 24 24" width="28" height="28"><path fill="currentColor" d="M19 6.41L17.59 5L12 10.59L6.41 5L5 6.41L10.59 12L5 17.59L6.41 19L12 13.41L17.59 19L19 17.59L13.41 12L19 6.41z"></path></svg>
+                </button>
+            </div>
+            <ul>
+                <li class="nav-category">--- テーマ別に見る ---</li>
+                <li><a href="art.html">Art & Architecture</a></li>
+                <li><a href="gourmet.html">Gourmet</a></li>
+                </ul>
+        </nav>
+    </div>
 
     <main>
         <section class="sub-hero" style="background-image: url('https://tokyo-marunouchi.jp/dmo_wp_YfehP9/wp-content/uploads/2018/01/916faeef1ab8fe3fb20bb42ef55051f4.jpg');">
@@ -551,6 +725,31 @@ img { max-width: 100%; height: auto; display: block; }
 // 기존 <script> 안의 내용을 모두 지우고 이 코드로 교체하세요.
     document.addEventListener('DOMContentLoaded', function () {
     
+    // [추가] 데스크톱 드롭다운 메뉴 클릭 기능
+    const dropdowns = document.querySelectorAll('.main-nav .dropdown');
+
+    dropdowns.forEach(dropdown => {
+        const button = dropdown.querySelector('.dropbtn');
+        button.addEventListener('click', function (event) {
+            // 다른 열려있는 드롭다운은 닫기
+            dropdowns.forEach(d => {
+                if (d !== dropdown) {
+                    d.classList.remove('open');
+                }
+            });
+            // 현재 드롭다운 토글
+            dropdown.classList.toggle('open');
+            event.stopPropagation(); // 이벤트 버블링 중단
+        });
+    });
+
+    // 화면의 다른 곳을 클릭하면 모든 드롭다운 닫기
+    window.addEventListener('click', function () {
+        dropdowns.forEach(dropdown => {
+            dropdown.classList.remove('open');
+        });
+    });
+
     // --- 헤더 기능 (드롭다운, 스크롤 효과, 모바일 메뉴) ---
     const header = document.querySelector('.main-header');
     if (header) {
